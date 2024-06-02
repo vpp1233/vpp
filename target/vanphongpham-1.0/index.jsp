@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../webapp/jquery/jquery.js"></script>
 </head>
 
 <body>
@@ -21,16 +20,13 @@
             </a>
             <div id="menu">
                 <div class="item">
-                    <li><a href="index.html" title="Trang Chủ">Trang Chủ</a></li>
+                    <li><a href="home" title="Trang Chủ">Trang Chủ</a></li>
                 </div>
                 <div class="item">
-                    <li><a href="dangnhap.html" title="Đăng Nhập">Đăng Nhập</a></li>
+                    <li><a href="login" title="Đăng Nhập">Đăng Nhập</a></li>
                 </div>
                 <div class="item">
-                    <li><a href="dangki.html" title="Đăng Kí">Đăng Kí</a></li>
-                </div>
-                <div class="item">
-                    <li><a href="sanphamyeuthich.html" title="Sản Phẩm Yêu Thích">Sản Phẩm Yêu Thích</a></li>
+                    <li><a href="register" title="Đăng Kí">Đăng Kí</a></li>
                 </div>
 
             </div>
@@ -148,17 +144,7 @@
                                 </p>
                             </div>
                         </footer>
-                        <div>
-                            <input type="button" value="aaaaa" />
-                        </div>
-                        <script>
-                            $(document).ready(function () {
-                                // Đoạn mã jQuery của bạn ở đây
-                                $("button").click(function () {
-                                    $("p").toggle();
-                                });
-                            });
-                        </script>
+
 </body>
 
 </html>

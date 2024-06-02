@@ -1,2 +1,5 @@
-C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\admin\HomeController.java
-C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\web\HomeController.java
+C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\home\HomeController.java
+C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\web\WebHomeController.java
+C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\admin\AdminHomeController.java
+C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\register\RegisterController.java
+C:\Users\Duc\Desktop\vanphongpham\src\main\java\com\vanphongpham\controller\login\LoginController.java

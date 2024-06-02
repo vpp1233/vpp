@@ -1,2 +1,5 @@
-com\testwebnew\controller\web\HomeController.class
-com\testwebnew\controller\admin\HomeController.class
+com\vanphongpham\controller\register\RegisterController.class
+com\vanphongpham\controller\admin\AdminHomeController.class
+com\vanphongpham\controller\login\LoginController.class
+com\vanphongpham\controller\web\WebHomeController.class
+com\vanphongpham\controller\home\HomeController.class
