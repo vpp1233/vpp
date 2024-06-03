@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -116,18 +119,20 @@
               </div>
             </div>
           </div>
-          <a href="home" class="btn-link">Đăng nhập</a>
+          <button type="submit" class="btn btn-primary">
+            Đăng nhập
+          </button>
           <div class="text-center mt-3">
             <a href="forgot">Quên mật khẩu?</a>
           </div>
           <div class="text-center mt-2">
-            <span>Chưa có tài khoản?</span> <a href="dangki"> Đăng ký</a>
+            <span>Chưa có tài khoản?</span> <a href="register"> Đăng ký</a>
           </div>
         </form>
       </div>
     </div>
 
-    <%@ include file="../header/footer.jsp" %>
+    <%@ include file="../footer/footer.jsp" %>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -146,6 +151,5 @@
         this.querySelector("i").classList.toggle("bi-eye-slash");
       });
     </script>
-
   </body>
 </html>

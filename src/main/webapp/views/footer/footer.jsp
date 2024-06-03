@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,19 +21,55 @@
         padding: 20px 0;
         text-align: center;
       }
+      .infor {
+        display: flex;
+        gap: 10px;
+      }
+      .social {
+        display: flex;
+        gap: 10px;
+      }
+      .custom-row {
+        display: flex;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
     <div class="footer">
-      <div class="row">
-        <div class="col-md-6">
-          <img src="logo/logo.jpg" alt="Logo" />
+      <div class="row custom-row">
+        <div class="col-md-4">
+          <img src="${pageContext.request.contextPath}/images/logo.jpg" alt="Logo" />
         </div>
-        <div class="col-md-6">
-          <h3>Địa chỉ</h3>
-          <p>Địa chỉ: 125 Xuân Thủy, Cầu Giấy, Hà Nội.</p>
-          <p>Điện thoại: 0123 456 789</p>
-          <p>starfruit1st@gmail.com</p>
+        <div class="col-md-4">
+          <h3>Văn Phòng Phẩm Bizfly</h3>
+          <div class="infor">
+            <span><i class="bi bi-map-fill"></i></span><p>Địa chỉ: 125 Xuân Thủy, Cầu Giấy, Hà Nội.</p>
+          </div>
+          <div class="infor">
+            <span><i class="bi bi-telephone-fill"></i></span><p>Điện thoại: 0123 456 789</p>
+          </div>
+          <div class="infor">
+            <span><i class="bi bi-envelope-fill"></i></span><p>starfruit1st@gmail.com</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Mạng xã hội</h3>
+          <div class="socical">
+            <div>
+              <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
+            </div>
+            <div>
+              <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+            </div>
+            <div>
+              <a href="https://tiktok.com/"><i class="bi bi-tiktok"></i></a>
+            </div>
+            <div>
+              <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+          
         </div>
       </div>
       <div style="margin-top: 15px">

@@ -1,6 +1,7 @@
 package com.vanphongpham.controller.login;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,7 @@ public class LoginController extends HttpServlet {
             response.sendRedirect("index");
         } else {
             request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-            request.getRequestDispatcher("views/login/dangnhap.jsp").forward(request, response);
+            request.getRequestDispatcher("views/login/login.jsp").forward(request, response);
         }
     }
 

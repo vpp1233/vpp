@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,7 +37,7 @@
     <!-- Header với Bootstrap -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <a class="navbar-brand" href="home">
-        <img src="logo/logo.jpg" alt="Logo" />
+        <img src="${pageContext.request.contextPath}/images/logo.jpg" alt="Logo" />
       </a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
