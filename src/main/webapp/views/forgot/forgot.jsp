@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đăng nhập</title>
+    <title>Quên mật khẩu</title>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,7 +13,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-
     <style>
       .body-login {
         display: flex;
@@ -87,7 +86,7 @@
 
     <div class="body-login">
       <div class="login-container">
-        <h2 class="text-center">Đăng nhập</h2>
+        <h2 class="text-center">Quên mật khẩu</h2>
         <form>
           <div class="form-group">
             <label for="email" class="emailPasword">Email:</label>
@@ -99,29 +98,14 @@
               name="email"
             />
           </div>
-          <div class="form-group">
-            <label for="password" class="emailPasword">Mật khẩu:</label>
-            <div class="input-group">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Nhập mật khẩu"
-                name="password"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text bg-white" id="togglePassword">
-                  <i class="bi bi-eye-slash"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <a href="home" class="btn-link">Đăng nhập</a>
-          <div class="text-center mt-3">
-            <a href="forgot">Quên mật khẩu?</a>
-          </div>
+
+          <button type="submit" class="btn btn-primary" id="toggleForgot">
+            Lấy lại mật khẩu
+          </button>
+
           <div class="text-center mt-2">
-            <span>Chưa có tài khoản?</span> <a href="dangki"> Đăng ký</a>
+            <span>Bạn có đăng ký tài khoản mới?</span>
+            <a href="dangki"> Đăng ký</a>
           </div>
         </form>
       </div>
@@ -133,19 +117,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-      const togglePassword = document.querySelector("#togglePassword");
-      const password = document.querySelector("#password");
+      const toggleForgot = document.querySelector("#toggleForgot");
 
-      togglePassword.addEventListener("click", function (e) {
-        // toggle the type attribute
-        const type =
-          password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
-        // toggle the eye slash icon
-        this.querySelector("i").classList.toggle("bi-eye");
-        this.querySelector("i").classList.toggle("bi-eye-slash");
-      });
+      toggleForgot.addEventListener(
+        "click",
+        alert("Coming soon!"),
+        setTimeout(() => {
+          window.location.href = "home";
+        }, 5000)
+      );
     </script>
-
   </body>
 </html>
