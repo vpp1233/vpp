@@ -1,153 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Văn Phòng Phẩm Bizfly </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Văn Phòng Phẩm Bizfly </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+            rel="stylesheet" />
+    </head>
 
-<body>
+    <body>
+        <%@ include file="./views/header/header.jsp" %>
 
-    <div id="wrapper">
-        <div id="header">
-            <a href="" class="logo">
-                <img src="logo/logo.jpg" alt="">
-            </a>
-            <div id="menu">
-                <div class="item">
-                    <li><a href="home" title="Trang Chủ">Trang Chủ</a></li>
-                </div>
-                <div class="item">
-                    <li><a href="login" title="Đăng Nhập">Đăng Nhập</a></li>
-                </div>
-                <div class="item">
-                    <li><a href="register" title="Đăng Kí">Đăng Kí</a></li>
-                </div>
-
-            </div>
-            <div id="actions">
-                <div class="item">
-                    <img src="logo/cart.png" alt="">
-                    <li><a href="giohang.html" title=".">.</a></li>
-                </div>
-                <div class="item">
-                    <img src="logo/user.png" alt="">
-                    <li><a href="thongtin.html" title=".">.</a></li>
-                </div>
-            </div>
-        </div>
-        <div id="banner">
-            <div class="box-right">
-                <h2>
-                    <span>BÚT VIẾT/VỞ VIẾT CAO CẤP</span>
-                    <br>
-                    <span>ĐỒ CHƠI THÔNG MINH</span>
-                </h2>
-                <p>Mừng ngày tựu trường, giảm giá 20% cho mỗi đơn hàng từ 100k </p>
-                <button>Các sản phẩm
-                    <div class="item">
-                        <li><a href="chitietsp.html">chi tiết</a></li>
-                </button>
-            </div>
-
-            <div class="box">
-
-                <i class="fa fa-search" aria-hidden="true"></i>
-
-                <input type="text" placeholder="Tìm kiếm sản phẩm">
-
-            </div>
+        <div class="container">
+            <h1>Welcome to Văn Phòng Phẩm Bizfly</h1>
+            <p>This is the homepage.</p>
+            <p>Nơi bạn có thể mua mọi thứ trên đời.</p>
 
         </div>
-        <div class="box-left"></div>
-    </div>
-    </div>
-    <div id="wp-products">
-        <h2>Combo Bút Viết Giảm 10%</h2>
-        <ul id="list-products">
-            <div class="item">
-                <img src="logo/sp1.png" alt="">
+        <%@ include file="./views/footer/footer.jsp" %>
 
-            </div>
-            <div class="item">
-                <img src="logo/sp2.png" alt="">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 
-            </div>
-            <div class="item">
-                <img src="logo/sp3.png" alt="">
-
-            </div>
-            <div id="wp-products">
-                <h2>Mừng ngày tựu trường, Mua 10 tặng 1 </h2>
-                <ul id="list-products2">
-                    <div class="item">
-                        <img src="logo/sp4.png" alt="">
-
-                    </div>
-                    <div class="item">
-                        <img src="logo/sp5.png" alt="">
-
-                    </div>
-                    <div class="item">
-                        <img src="logo/sp6.png" alt="">
-
-                    </div>
-
-
-
-                    <footer>
-                        <footer class="footer-distributed">
-
-                            <div class="footer-left">
-                                <h3>Biz<span>Fly</span></h3>
-
-                                <p class="footer-links">
-                                    <a href="#">Trang chủ</a>
-                                    |
-                                    <a href="#">Về chúng tôi</a>
-                                    |
-                                    <a href="#">Liên hệ</a>
-                                    |
-                                    <a href="#">Blog</a>
-                                </p>
-
-                                <p class="footer-company-name">2024 © <strong>BizFly.vn</strong> Bản quyền thuộc công ty
-                                    cổ phần BizFly</p>
-                            </div>
-
-                            <div class="footer-center">
-                                <div>
-                                    <i class="fa fa-map-marker"></i>
-                                    <p><span>Quốc gia</span>
-                                        Việt Nam</p>
-                                </div>
-
-                                <div>
-                                    <i class="fa fa-phone"></i>
-                                    <p>0398081331</p>
-                                </div>
-                                <div>
-                                    <i class="fa fa-envelope"></i>
-                                    <p><a href="mailto:starfruit1st@gmail.com">starfruit1st@gmail.com</a></p>
-                                </div>
-                            </div>
-                            <div class="footer-right">
-                                <p class="footer-company-about">
-                                    <span>Địa chỉ</span>
-                                    <strong>BizFly</strong> Cửa hàng văn phòng phẩm tại 125 Xuân Thủy, Cầu Giấy, Hà Nội.
-
-                                </p>
-                            </div>
-                        </footer>
-
-</body>
-
-</html>
+    </html>

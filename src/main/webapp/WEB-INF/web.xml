@@ -54,6 +54,53 @@
 		<url-pattern>/register</url-pattern>
 	</servlet-mapping>
 
+
+	<!-- Cấu hình Servlet cho trang quên mật khẩu -->
+	<servlet>
+		<servlet-name>ForGotController</servlet-name>
+		<servlet-class>com.vanphongpham.controller.forgot.ForGotController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ForGotController</servlet-name>
+		<url-pattern>/forgot</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Cấu hình Servlet cho trang giỏ hàng -->
+	<servlet>
+		<servlet-name>CartController</servlet-name>
+		<servlet-class>com.vanphongpham.controller.cart.CartController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CartController</servlet-name>
+		<url-pattern>/cart</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Cấu hình Servlet cho trang hồ sơ tài khoản -->
+	<servlet>
+		<servlet-name>ProfileController</servlet-name>
+		<servlet-class>com.vanphongpham.controller.profile.ProfileController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProfileController</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+
+	<!-- Cấu hình Servlet cho trang sản phẩm yêu thích -->
+	<servlet>
+		<servlet-name>FavoritesController</servlet-name>
+		<servlet-class>com.vanphongpham.controller.favorites.FavoritesController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FavoritesController</servlet-name>
+		<url-pattern>/favorites</url-pattern>
+	</servlet-mapping>
+
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>

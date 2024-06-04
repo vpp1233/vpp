@@ -126,7 +126,7 @@ pageEncoding="UTF-8" %>
         "click",
         alert("Coming soon!"),
         setTimeout(() => {
-          window.location.href = "home";
+          window.location.href = "index";
         }, 5000)
       );
     </script>

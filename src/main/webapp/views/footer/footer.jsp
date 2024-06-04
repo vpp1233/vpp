@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +12,10 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
     <style>
       /* Định dạng phần footer */
       .footer {
@@ -21,17 +24,21 @@
         padding: 20px 0;
         text-align: center;
       }
-      .infor {
+      .content-contact {
         display: flex;
-        gap: 10px;
-      }
-      .social {
-        display: flex;
-        gap: 10px;
-      }
-      .custom-row {
-        display: flex;
+        gap: 15px;
+        justify-content: center;
         align-items: center;
+      }
+      .content-social {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+      .container-contact {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
       }
     </style>
   </head>
@@ -39,37 +46,65 @@
     <div class="footer">
       <div class="row custom-row">
         <div class="col-md-4">
-          <img src="${pageContext.request.contextPath}/images/logo.jpg" alt="Logo" />
+          <img
+            src="${pageContext.request.contextPath}/images/logo.jpg"
+            alt="Logo"
+          />
         </div>
         <div class="col-md-4">
-          <h3>Văn Phòng Phẩm Bizfly</h3>
-          <div class="infor">
-            <span><i class="bi bi-map-fill"></i></span><p>Địa chỉ: 125 Xuân Thủy, Cầu Giấy, Hà Nội.</p>
-          </div>
-          <div class="infor">
-            <span><i class="bi bi-telephone-fill"></i></span><p>Điện thoại: 0123 456 789</p>
-          </div>
-          <div class="infor">
-            <span><i class="bi bi-envelope-fill"></i></span><p>starfruit1st@gmail.com</p>
+          <h3>Liên hệ</h3>
+          <div class="container-contact">
+            <div class="content-contact">
+              <div>
+                <i class="bi bi-geo-alt-fill" style="font-size: 20px"></i>
+              </div>
+              <div>Địa chỉ: 125 Xuân Thủy, Cầu Giấy, Hà Nội.</div>
+            </div>
+            <div class="content-contact">
+              <div>
+                <i
+                  class="bi bi-telephone-inbound-fill"
+                  style="font-size: 20px"
+                ></i>
+              </div>
+              <div>Điện thoại: 0123 456 789</div>
+            </div>
+            <div class="content-contact">
+              <div>
+                <i
+                  class="bi bi-envelope-check-fill"
+                  style="font-size: 20px"
+                ></i>
+              </div>
+              <div>starfruit1st@gmail.com</div>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <h3>Mạng xã hội</h3>
-          <div class="socical">
-            <div>
-              <a href="https://www.youtube.com/"><i class="bi bi-youtube"></i></a>
-            </div>
-            <div>
-              <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
-            </div>
-            <div>
-              <a href="https://tiktok.com/"><i class="bi bi-tiktok"></i></a>
-            </div>
-            <div>
-              <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
-            </div>
+          <div class="content-social">
+            <a href="https://www.facebook.com/"
+              ><i
+                class="bi bi-facebook fa-2xl"
+                style="font-size: 24px; color: black"
+              ></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i
+                class="bi bi-youtube"
+                style="font-size: 24px; color: black"
+              ></i
+            ></a>
+            <a href="https://www.tiktok.com/"
+              ><i class="bi bi-tiktok" style="font-size: 24px; color: black"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i
+                class="bi bi-instagram"
+                style="font-size: 24px; color: black"
+              ></i
+            ></a>
           </div>
-          
         </div>
       </div>
       <div style="margin-top: 15px">
