@@ -8,9 +8,9 @@ public class Category extends BaseModel<Category> {
     private int productId;
 
     // Constructor
-    public Category(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy, int categoryId,
+    public Category(int categoryId,
             String categoryName,
-            int productId) {
+            int productId, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.categoryId = categoryId;
         this.categoryName = categoryName;

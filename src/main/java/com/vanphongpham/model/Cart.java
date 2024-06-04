@@ -8,8 +8,8 @@ public class Cart extends BaseModel<Cart> {
     private int userId;
 
     // Constructor
-    public Cart(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy, int cartId, int productId,
-            int userId) {
+    public Cart(int cartId, int productId,
+            int userId, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.cartId = cartId;
         this.productId = productId;

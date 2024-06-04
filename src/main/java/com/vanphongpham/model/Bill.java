@@ -9,8 +9,8 @@ public class Bill extends BaseModel<Bill> {
     private float totalPrice;
 
     // Constructor
-    public Bill(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy, int billId, int customerId,
-            short status, float totalPrice) {
+    public Bill(int billId, int customerId,
+            short status, float totalPrice, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.billId = billId;
         this.customerId = customerId;

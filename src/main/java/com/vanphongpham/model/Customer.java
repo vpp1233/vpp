@@ -15,9 +15,10 @@ public class Customer extends BaseModel<Customer> {
 
     // Constructor
 
-    public Customer(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy, int customerId,
+    public Customer(int customerId,
             String address, String city, String district, String email, String firstName, String lastName,
-            String phoneNumber, String userName) {
+            String phoneNumber, String userName, Timestamp createdAt, Timestamp updateAt, String createBy,
+            String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.customerId = customerId;
         this.address = address;
@@ -68,6 +69,9 @@ public class Customer extends BaseModel<Customer> {
     }
 
     // Getter
+    public int getCustomerId() {
+        return customerId;
+    }
 
     public String getAddress() {
         return address;

@@ -100,6 +100,16 @@
 		<servlet-name>FavoritesController</servlet-name>
 		<url-pattern>/favorites</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Cấu hình Servlet cho trang user -->
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>com.vanphongpham.controller.admin.UserController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/user</url-pattern>
+	</servlet-mapping>
 
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
