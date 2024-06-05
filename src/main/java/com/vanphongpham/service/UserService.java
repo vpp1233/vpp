@@ -18,9 +18,13 @@ public class UserService {
     }
 
     public User getUserById(int userId) {
-        return userRepository.selectUser(userId);
+        return userRepository.getById(userId);
     }
-
+    
+    public User getUserbyUsernameAndPassword(String userName, String password) {
+    	return userRepository.getUserbyUsernameAndPassword(userName, password);
+	}
+    
     public List<User> getAllUsers() {
         return userRepository.selectAllUsers();
     }

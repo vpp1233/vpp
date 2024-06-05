@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.vanphongpham.model.User;
 import com.vanphongpham.service.UserService;
 
-@WebServlet(name = "UserController", urlPatterns = { "/user" })
+//@WebServlet(name = "UserController", urlPatterns = { "/user" })
+@WebServlet("/user")
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = -5682945778159712588L;
     private UserService userService;

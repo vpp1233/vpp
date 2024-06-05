@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" %>
+<%@ page import="com.vanphongpham.util.ActionConstants" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +70,7 @@ pageEncoding="UTF-8" %>
       .bi {
         cursor: pointer;
       }
-      .emailPasword {
+      .userNamePassword {
         font-weight: 600;
       }
       .btn-link {
@@ -91,44 +92,47 @@ pageEncoding="UTF-8" %>
     <div class="body-login">
       <div class="login-container">
         <h2 class="text-center">Đăng nhập</h2>
-        <form>
-          <div class="form-group">
-            <label for="email" class="emailPasword">Email:</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="Nhập email"
-              name="email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password" class="emailPasword">Mật khẩu:</label>
-            <div class="input-group">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                placeholder="Nhập mật khẩu"
-                name="password"
-              />
-              <div class="input-group-append">
-                <span class="input-group-text bg-white" id="togglePassword">
-                  <i class="bi bi-eye-slash"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            Đăng nhập
-          </button>
-          <div class="text-center mt-3">
-            <a href="forgot">Quên mật khẩu?</a>
-          </div>
-          <div class="text-center mt-2">
-            <span>Chưa có tài khoản?</span> <a href="register"> Đăng ký</a>
-          </div>
-        </form>
+        
+	        <form action="login" method="post">
+	        	<input type="hidden" name="action" value="<%=ActionConstants.LOGIN%>" />
+	        	
+				<div class="form-group">
+				  <label for="username" class="userNamePassword">Tài khoản:</label>
+				  <input
+				    type="username"
+				    class="form-control"
+				    id="username"
+				    placeholder="Nhập tài khoản"
+				    name="username"
+				  />
+				</div>
+				<div class="form-group">
+				  <label for="password" class="userNamePassword">Mật khẩu:</label>
+				  <div class="input-group">
+				    <input
+				      type="password"
+				      class="form-control"
+				      id="password"
+				      placeholder="Nhập mật khẩu"
+				      name="password"
+				    />
+				    <div class="input-group-append">
+				      <span class="input-group-text bg-white" id="togglePassword">
+				        <i class="bi bi-eye-slash"></i>
+				      </span>
+				    </div>
+				  </div>
+				</div>
+				<button type="submit" class="btn btn-primary">
+				  Đăng nhập
+				</button>
+				<div class="text-center mt-3">
+				  <a href="forgot">Quên mật khẩu?</a>
+				</div>
+				<div class="text-center mt-2">
+				  <span>Chưa có tài khoản?</span> <a href="register"> Đăng ký</a>
+				</div>
+	        </form>
       </div>
     </div>
 

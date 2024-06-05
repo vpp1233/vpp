@@ -16,6 +16,7 @@ public class UserRepository {
 
     private static final String INSERT_USER_SQL = "INSERT INTO tbl_user (user_name, password, email, status, type, created_at, update_at, create_by, update_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM tbl_user WHERE user_id = ?;";
+    private static final String SELECT_USER_BY_USERNAME_AND_PASSWORD = "SELECT * FROM tbl_user WHERE user_name = ? AND password = ?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM tbl_user;";
     private static final String DELETE_USER_SQL = "DELETE FROM tbl_user WHERE user_id = ?;";
     private static final String UPDATE_USER_SQL = "UPDATE tbl_user SET user_name = ?, password = ?, email = ?, status = ?, type = ?, update_at = ?, updated_by = ? WHERE user_id = ?;";
@@ -39,14 +40,14 @@ public class UserRepository {
         }
     }
 
-    public User selectUser(int id) {
+    public User getById(int id) {
         User user = null;
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String username = rs.getString("username");
+                String user_name = rs.getString("user_name");
                 String password = rs.getString("password");
                 Short status = rs.getShort("status");
                 Short type = rs.getShort("type");
@@ -55,7 +56,34 @@ public class UserRepository {
                 Timestamp update_at = rs.getTimestamp("update_at");
                 String createBy = rs.getString("create_by");
                 String updateBy = rs.getString("update_by");
-                user = new User(id, username, password, status, type, email, created_at, update_at, createBy, updateBy);
+                user = new User(id, user_name, password, status, type, email, created_at, update_at, createBy, updateBy);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return user;
+    }
+    
+    public User getUserbyUsernameAndPassword(String userName, String password) {
+        User user = null;
+        try (
+    		Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERNAME_AND_PASSWORD)) {
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+            	int id = rs.getInt("user_id");
+                String user_name = rs.getString("user_name");
+                String password1 = rs.getString("password");
+                Short status = rs.getShort("status");
+                Short type = rs.getShort("type");
+                String email = rs.getString("email");
+                Timestamp created_at = rs.getTimestamp("created_at");
+                Timestamp update_at = rs.getTimestamp("update_at");
+                String createBy = rs.getString("create_by");
+                String updateBy = rs.getString("update_by");
+                user = new User(id, user_name, password1, status, type, email, created_at, update_at, createBy, updateBy);
             }
         } catch (SQLException e) {
             printSQLException(e);

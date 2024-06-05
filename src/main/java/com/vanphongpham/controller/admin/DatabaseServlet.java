@@ -26,7 +26,7 @@ public class DatabaseServlet extends HttpServlet {
                 ResultSet resultSet = statement.executeQuery();
 
                 while (resultSet.next()) {
-                    response.getWriter().println("Data: " + resultSet.getString("columnname"));
+                    response.getWriter().println("Data: " + resultSet.getString("user_id"));
                 }
 
                 resultSet.close();

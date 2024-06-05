@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AdminHomeController", urlPatterns = { "/admin/home" })
+//@WebServlet(name = "AdminHomeController", urlPatterns = { "/admin/home" })
+@WebServlet("/admin/home")
 public class AdminHomeController extends HttpServlet {
 
 	private static final long serialVersionUID = -5682945778159712588L;
