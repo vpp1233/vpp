@@ -2,6 +2,24 @@
 pageEncoding="UTF-8" %>
 <%@ page import="com.vanphongpham.util.ActionConstants" %>
 
+<%-- Kiểm tra nếu có thông báo lỗi trong session thì hiển thị popup --%>
+<%
+String error = (String) session.getAttribute("error");
+if (error != null) {
+%>
+    <script>
+        // Hiển thị thông báo lỗi bằng SweetAlert
+        Swal.fire({
+            icon: 'error',
+            title: 'Lỗi',
+            text: '<%= error %>',
+        });
+    </script>
+<%
+    // Xóa thông báo lỗi khỏi session sau khi đã sử dụng
+    session.removeAttribute("error");
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
