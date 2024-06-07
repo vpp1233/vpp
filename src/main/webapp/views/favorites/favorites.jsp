@@ -17,7 +17,7 @@ pageEncoding="UTF-8" %>
       rel="stylesheet"
     />
 
-    
+    <link href="${pageContext.request.contextPath}/views/favorites/favorites.css" rel="stylesheet"> 
   </head>
 
   <body>

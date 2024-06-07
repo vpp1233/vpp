@@ -11,32 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
       rel="stylesheet" />
-    <style>
-      .navbar-custom {
-        background-color: #f9ffdb;
-        padding-left: 100px;
-      }
 
-      .navbar-nav .nav-link {
-        color: black !important;
-        /* Màu chữ đen */
-      }
-
-      .navbar-nav .nav-link:hover {
-        color: #007bff !important;
-        /* Màu chữ khi hover */
-      }
-
-      .navbar-brand {
-        padding: 0 !important;
-      }
-
-      .navbar-brand img {
-        padding: 0 !important;
-        height: 80px;
-        background-size: cover;
-      }
-    </style>
+    <link href="${pageContext.request.contextPath}/views/header/header.css" rel="stylesheet">
   </head>
 
   <body>
@@ -83,7 +59,7 @@
     </nav>
 
     <!-- Nội dung của trang -->
-    
+
 
     <!-- Bootstrap JavaScript and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

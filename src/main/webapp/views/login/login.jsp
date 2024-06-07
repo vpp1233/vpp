@@ -1,25 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %>
-<%@ page import="com.vanphongpham.util.ActionConstants" %>
-
-<%-- Kiểm tra nếu có thông báo lỗi trong session thì hiển thị popup --%>
-<%
-String error = (String) session.getAttribute("error");
-if (error != null) {
-%>
-    <script>
-        // Hiển thị thông báo lỗi bằng SweetAlert
-        Swal.fire({
-            icon: 'error',
-            title: 'Lỗi',
-            text: '<%= error %>',
-        });
-    </script>
-<%
-    // Xóa thông báo lỗi khỏi session sau khi đã sử dụng
-    session.removeAttribute("error");
-}
-%>
+pageEncoding="UTF-8" %> <%@ page import="com.vanphongpham.util.ActionConstants"
+%> <%-- Kiểm tra nếu có thông báo lỗi trong session thì hiển thị popup --%> <%
+String error = (String) session.getAttribute("error"); if (error != null) { %>
+<script>
+  // Hiển thị thông báo lỗi bằng SweetAlert
+  Swal.fire({
+    icon: "error",
+    title: "Lỗi",
+    text: "<%= error %>",
+  });
+</script>
+<% // Xóa thông báo lỗi khỏi session sau khi đã sử dụng
+session.removeAttribute("error"); } %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,72 +28,10 @@ if (error != null) {
       rel="stylesheet"
     />
 
-    <style>
-      .body-login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f8f9fa;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-
-      .login-container {
-        max-width: 500px;
-        width: 100%;
-        padding: 40px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-      }
-
-      .login-container h2 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      .login-container .form-group {
-        margin-bottom: 15px;
-        position: relative;
-      }
-
-      .login-container .form-control {
-        border-radius: 12px;
-        height: 50px;
-      }
-
-      .login-container .btn {
-        border-radius: 12px;
-        width: 100%;
-      }
-
-      .input-group {
-        border-radius: 12px;
-      }
-      .input-group .form-control {
-        border-radius: 12px;
-      }
-      .input-group-append .input-group-text {
-        border-radius: 0 12px 12px 0;
-      }
-      .bi {
-        cursor: pointer;
-      }
-      .userNamePassword {
-        font-weight: 600;
-      }
-      .btn-link {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: black;
-        text-decoration: none !important;
-        border-radius: 12px;
-        text-align: center;
-        width: 100%;
-      }
-    </style>
+    <link
+      href="${pageContext.request.contextPath}/views/login/login.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -110,47 +40,51 @@ if (error != null) {
     <div class="body-login">
       <div class="login-container">
         <h2 class="text-center">Đăng nhập</h2>
-        
-	        <form action="login" method="post">
-	        	<input type="hidden" name="action" value="<%=ActionConstants.LOGIN%>" />
-	        	
-				<div class="form-group">
-				  <label for="username" class="userNamePassword">Tài khoản:</label>
-				  <input
-				    type="username"
-				    class="form-control"
-				    id="username"
-				    placeholder="Nhập tài khoản"
-				    name="username"
-				  />
-				</div>
-				<div class="form-group">
-				  <label for="password" class="userNamePassword">Mật khẩu:</label>
-				  <div class="input-group">
-				    <input
-				      type="password"
-				      class="form-control"
-				      id="password"
-				      placeholder="Nhập mật khẩu"
-				      name="password"
-				    />
-				    <div class="input-group-append">
-				      <span class="input-group-text bg-white" id="togglePassword">
-				        <i class="bi bi-eye-slash"></i>
-				      </span>
-				    </div>
-				  </div>
-				</div>
-				<button type="submit" class="btn btn-primary">
-				  Đăng nhập
-				</button>
-				<div class="text-center mt-3">
-				  <a href="forgot">Quên mật khẩu?</a>
-				</div>
-				<div class="text-center mt-2">
-				  <span>Chưa có tài khoản?</span> <a href="register"> Đăng ký</a>
-				</div>
-	        </form>
+
+        <form action="login" method="post">
+          <input
+            type="hidden"
+            name="action"
+            value="<%=ActionConstants.LOGIN%>"
+          />
+
+          <div class="form-group">
+            <label for="username" class="userNamePassword">Tài khoản:</label>
+            <input
+              type="username"
+              class="form-control"
+              id="username"
+              placeholder="Nhập tài khoản"
+              name="username"
+            />
+            <div id="usernameError" class="text-danger error-message"></div>
+          </div>
+          <div class="form-group">
+            <label for="password" class="emailPasword">Mật khẩu:</label>
+            <div class="input-group">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Nhập mật khẩu"
+                name="password"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text bg-white" id="togglePassword">
+                  <i class="bi bi-eye-slash"></i>
+                </span>
+              </div>
+            </div>
+            <div id="passwordError" class="text-danger error-message"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+          <div class="text-center mt-3">
+            <a href="forgot">Quên mật khẩu?</a>
+          </div>
+          <div class="text-center mt-2">
+            <span>Chưa có tài khoản?</span> <a href="register"> Đăng ký</a>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -171,6 +105,50 @@ if (error != null) {
         // toggle the eye slash icon
         this.querySelector("i").classList.toggle("bi-eye");
         this.querySelector("i").classList.toggle("bi-eye-slash");
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          const username = document.querySelector("#username").value;
+          const password = document.querySelector("#password").value;
+
+          // Kiểm tra username và password theo các điều kiện và cập nhật thông báo lỗi
+          document.querySelector("#usernameError").textContent =
+            validateUsername(username)
+              ? ""
+              : "Username không hợp lệ. Username phải chứa ký tự _, @ hoặc .";
+          document.querySelector("#passwordError").textContent =
+            validatePassword(password)
+              ? ""
+              : "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và ký tự đặc biệt.";
+
+          // Nếu có lỗi, không submit form
+          if (!validateUsername(username) || !validatePassword(password)) {
+            return;
+          }
+
+          // Nếu tất cả điều kiện đều được thỏa mãn, submit form
+          form.submit();
+        });
+
+        // Hàm kiểm tra username
+        function validateUsername(username) {
+          const usernameRegex = /^[a-zA-Z0-9_@.]+$/;
+          return usernameRegex.test(username);
+        }
+
+        // Hàm kiểm tra password
+        function validatePassword(password) {
+          // Ít nhất 8 ký tự, chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 ký tự đặc biệt
+          const passwordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+          return passwordRegex.test(password);
+        }
       });
     </script>
   </body>
