@@ -29,77 +29,10 @@ session.removeAttribute("error"); } %>
       rel="stylesheet"
     />
 
-    <style>
-      .body-login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #f8f9fa;
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-
-      .login-container {
-        /* max-width: 500px; */
-        width: 100%;
-        padding: 40px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-      }
-
-      .login-container h2 {
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      .login-container .form-group {
-        margin-bottom: 15px;
-        position: relative;
-      }
-
-      .login-container .form-control {
-        border-radius: 12px;
-        height: 50px;
-      }
-
-      .login-container .btn {
-        border-radius: 12px;
-        width: 100%;
-      }
-
-      .input-group {
-        border-radius: 12px;
-      }
-
-      .input-group .form-control {
-        border-radius: 12px;
-      }
-
-      .input-group-append .input-group-text {
-        border-radius: 0 12px 12px 0;
-      }
-
-      .bi {
-        cursor: pointer;
-      }
-
-      .emailPasword {
-        font-weight: 600;
-      }
-
-      .btn-link {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: black;
-        text-decoration: none !important;
-        border-radius: 12px;
-        text-align: center;
-        width: 100%;
-      }
-    </style>
+    <link
+      href="${pageContext.request.contextPath}/views/profile/profile.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -169,10 +102,6 @@ session.removeAttribute("error"); } %>
     </div>
 
     <%@ include file="../footer/footer.jsp" %>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {

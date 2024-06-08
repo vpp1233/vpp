@@ -36,18 +36,17 @@ pageEncoding="UTF-8" %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="index">Danh sách user</a>
+              <a class="nav-link" href="index">Quản lý người dùng</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login">Danh sách sản phẩm</a>
+              <a class="nav-link" href="login">Quản lý sản phảm</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="favorites">Quản lý sản phẩm ưu thích</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="register">Báo cáo doanh thu</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="favorites"
-                >Danh sách sản phẩm ưa thích</a
-              >
             </li>
           </ul>
         </div>
@@ -88,8 +87,5 @@ pageEncoding="UTF-8" %>
     <!-- Nội dung của trang -->
 
     <!-- Bootstrap JavaScript and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

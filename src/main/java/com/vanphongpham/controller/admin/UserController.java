@@ -15,7 +15,7 @@ import com.vanphongpham.model.User;
 import com.vanphongpham.service.UserService;
 
 //@WebServlet(name = "UserController", urlPatterns = { "/user" })
-@WebServlet("/user")
+@WebServlet("/admin/user")
 public class UserController extends HttpServlet {
     private static final long serialVersionUID = -5682945778159712588L;
     private UserService userService;
@@ -61,12 +61,12 @@ public class UserController extends HttpServlet {
             throws IOException, ServletException {
         List<User> listUser = userService.getAllUsers();
         request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("/views/user/list.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/admin/user/list.jsp").forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/views/user/form.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/admin/user/form.jsp").forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -74,7 +74,7 @@ public class UserController extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         User existingUser = userService.getUserById(userId);
         request.setAttribute("user", existingUser);
-        request.getRequestDispatcher("/views/user/form.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/admin/user/form.jsp").forward(request, response);
 
     }
 
