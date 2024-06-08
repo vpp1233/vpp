@@ -228,6 +228,7 @@ session.removeAttribute("error"); } %>
 
           if (!isValid) {
             event.preventDefault(); // Ngăn form gửi đi nếu có lỗi
+            return;
           }
           form.submit(alert("Coming soon!"), (window.location.href = "/"));
         });

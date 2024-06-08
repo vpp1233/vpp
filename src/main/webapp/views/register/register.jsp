@@ -124,30 +124,33 @@ session.removeAttribute("error"); } %>
           const username = document.querySelector("#username").value;
           const password = document.querySelector("#password").value;
 
-          // Kiểm tra username và password theo các điều kiện và cập nhật thông báo lỗi
-          document.querySelector("#usernameError").textContent =
-            validateUsername(username)
-              ? ""
-              : "Username không hợp lệ. Username phải chứa ký tự _, @ hoặc .";
-          document.querySelector("#passwordError").textContent =
-            validatePassword(password)
-              ? ""
-              : "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và ký tự đặc biệt.";
+          let isValid = true;
 
-          // Nếu có lỗi, không submit form
-          if (!validateUsername(username) || !validatePassword(password)) {
-            return;
+          // Kiểm tra username và password theo các điều kiện và cập nhật thông báo lỗi
+          if (username.trim() === "") {
+            usernameError.innerText = "Tài khoản không được để trống.";
+            isValid = false;
+          } else {
+            usernameError.innerText = ""; // Xóa thông báo lỗi nếu có
+          }
+          if (password.trim() === "") {
+            passwordError.innerText = "Mật khẩu không được để trống.";
+            isValid = false;
+          } else if (!validatePassword(password)) {
+            passwordError.innerText =
+              "Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và ký tự đặc biệt.";
+            isValid = false;
+          } else {
+            passwordError.innerText = ""; // Xóa thông báo lỗi nếu có
           }
 
           // Nếu tất cả điều kiện đều được thỏa mãn, submit form
+          if (!isValid) {
+            event.preventDefault(); // Ngăn form gửi đi nếu có lỗi
+            return;
+          }
           form.submit();
         });
-
-        // Hàm kiểm tra username
-        function validateUsername(username) {
-          const usernameRegex = /^[a-zA-Z0-9_@.]+$/;
-          return usernameRegex.test(username);
-        }
 
         // Hàm kiểm tra password
         function validatePassword(password) {
