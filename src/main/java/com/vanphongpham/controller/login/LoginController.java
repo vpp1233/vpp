@@ -55,6 +55,10 @@ public class LoginController extends HttpServlet {
     private boolean validateUser(HttpServletRequest request, String username, String password) {
         User existingUser = userService.getUserbyUsernameAndPassword(username, password);
         if(existingUser != null) {
+        	HttpSession session = request.getSession(false);
+        	if (session != null) {
+                session.invalidate(); // Đây là phương thức để làm mới session
+            }
         		request.getSession().setAttribute("userId", existingUser.getUserId());
                 request.getSession().setAttribute("user", existingUser.getUserName());
                 request.getSession().setAttribute("role", existingUser.getType());

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.vanphongpham.model.User;
 import com.vanphongpham.service.UserService;
@@ -66,6 +67,8 @@ public class UserController extends HttpServlet {
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	User newUser = new User(null,null,null,null);
+    	request.setAttribute("user", newUser);
         request.getRequestDispatcher("/views/admin/user/form.jsp").forward(request, response);
     }
 
@@ -80,33 +83,36 @@ public class UserController extends HttpServlet {
 
     private void insertUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        short status = Short.parseShort(request.getParameter("status"));
-        short type = Short.parseShort(request.getParameter("type"));
+    	HttpSession session = request.getSession(false);
+    	User user = new User(null, null, null, null);
+    	user.setUserName(request.getParameter("userName"));
+    	user.setPassword(request.getParameter("password"));
+        user.setEmail(request.getParameter("email"));
+        user.setStatus(Integer.parseInt(request.getParameter("status")));
+        user.setType(Integer.parseInt(request.getParameter("type")));
         Timestamp createdAt = new Timestamp(System.currentTimeMillis());
-        String createdBy = request.getParameter("createdBy");
-        Timestamp updatedAt = createdAt;
-        String updatedBy = createdBy;
+        String createdBy = session != null? String.valueOf(session.getAttribute("userId")) : null;
+        Timestamp updatedAt = null;
+        String updatedBy = null;
 
-        User newUser = new User(0, userName, password, status, type, email, createdAt, updatedAt, createdBy, updatedBy);
-        userService.addUser(newUser);
+        userService.addUser(user);
         response.sendRedirect("user?action=list");
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        short status = Short.parseShort(request.getParameter("status"));
-        short type = Short.parseShort(request.getParameter("type"));
-        Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
-        String updatedBy = request.getParameter("updatedBy");
-
-        User user = new User(userId, userName, password, status, type, email, null, updatedAt, null, updatedBy);
+    	HttpSession session = request.getSession(false);
+    	User user = new User(null, null, null, null);
+    	
+    	user.setUserId(Integer.parseInt(request.getParameter("userId")));
+    	user.setUserName(request.getParameter("userName"));
+    	user.setPassword(request.getParameter("password"));
+        user.setEmail(request.getParameter("email"));
+        user.setStatus(Integer.parseInt(request.getParameter("status")));
+        user.setType(Integer.parseInt(request.getParameter("type")));
+        user.setUpdateAt(new Timestamp(System.currentTimeMillis()));
+        user.setUpdateBy(session != null? String.valueOf(session.getAttribute("userId")) : null);
+        
         userService.updateUser(user);
         response.sendRedirect("user?action=list");
     }

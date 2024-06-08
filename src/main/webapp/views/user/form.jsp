@@ -16,9 +16,14 @@
             Thêm người dùng mới
         </c:otherwise>
     </c:choose></h2>
-    <form action="user" method="post">
-        <input type="hidden" name="userId" value="${user.userId}" />
-        <input type="hidden" name="action" value="insert" />
+    <form action="${pageContext.request.contextPath}/admin/user" method="post">
+        <c:if test="${not empty user.userId}">
+            <input type="hidden" name="userId" value="${user.userId}" />
+            <input type="hidden" name="action" value="update" />
+        </c:if>
+        <c:if test="${empty user.userId}">
+            <input type="hidden" name="action" value="insert" />
+        </c:if>
         <table>
             <tr>
                 <td>Tên người dùng:</td>
@@ -39,14 +44,6 @@
             <tr>
                 <td>Loại:</td>
                 <td><input type="number" name="type" value="${user.type}" required /></td>
-            </tr>
-            <tr>
-                <td>Người tạo:</td>
-                <td><input type="text" name="createdBy" value="${user.createdBy}" required /></td>
-            </tr>
-            <tr>
-                <td>Người cập nhật:</td>
-                <td><input type="text" name="updatedBy" value="${user.updatedBy}" required /></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="save" /></td>

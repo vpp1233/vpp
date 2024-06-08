@@ -22,7 +22,7 @@ prefix="c" %>
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Quản lý người dùng</h2>
         <button class="btn btn-success">
-          <a href="${pageContext.request.contextPath}/user?action=new"
+          <a href="${pageContext.request.contextPath}/admin/user?action=new"
             >Thêm mới</a
           >
         </button>

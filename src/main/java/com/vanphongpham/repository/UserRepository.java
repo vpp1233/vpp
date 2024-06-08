@@ -19,7 +19,7 @@ public class UserRepository {
     private static final String SELECT_USER_BY_USERNAME_AND_PASSWORD = "SELECT * FROM tbl_user WHERE user_name = ? AND password = ?;";
     private static final String SELECT_ALL_USERS = "SELECT * FROM tbl_user;";
     private static final String DELETE_USER_SQL = "DELETE FROM tbl_user WHERE user_id = ?;";
-    private static final String UPDATE_USER_SQL = "UPDATE tbl_user SET user_name = ?, password = ?, email = ?, status = ?, type = ?, update_at = ?, updated_by = ? WHERE user_id = ?;";
+    private static final String UPDATE_USER_SQL = "UPDATE tbl_user SET user_name = ?, password = ?, email = ?, status = ?, type = ?, update_at = ?, update_by = ? WHERE user_id = ?;";
 
     public void insertUser(User user) throws SQLException {
         try (
@@ -27,8 +27,8 @@ public class UserRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setShort(4, user.getStatus());
-            preparedStatement.setShort(5, user.getType());
+            preparedStatement.setInt(4, user.getStatus());
+            preparedStatement.setInt(5, user.getType());
             preparedStatement.setString(3, user.getEmail());
             preparedStatement.setTimestamp(6, user.getCreatedAt());
             preparedStatement.setTimestamp(7, user.getUpdateAt());
@@ -40,7 +40,7 @@ public class UserRepository {
         }
     }
 
-    public User getById(int id) {
+    public User getById(Integer id) {
         User user = null;
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
@@ -49,8 +49,8 @@ public class UserRepository {
             while (rs.next()) {
                 String user_name = rs.getString("user_name");
                 String password = rs.getString("password");
-                Short status = rs.getShort("status");
-                Short type = rs.getShort("type");
+                Integer status = rs.getInt("status");
+                Integer type = rs.getInt("type");
                 String email = rs.getString("email");
                 Timestamp created_at = rs.getTimestamp("created_at");
                 Timestamp update_at = rs.getTimestamp("update_at");
@@ -73,11 +73,11 @@ public class UserRepository {
             preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-            	int id = rs.getInt("user_id");
+            	Integer id = rs.getInt("user_id");
                 String user_name = rs.getString("user_name");
                 String password1 = rs.getString("password");
-                Short status = rs.getShort("status");
-                Short type = rs.getShort("type");
+                Integer status = rs.getInt("status");
+                Integer type = rs.getInt("type");
                 String email = rs.getString("email");
                 Timestamp created_at = rs.getTimestamp("created_at");
                 Timestamp update_at = rs.getTimestamp("update_at");
@@ -97,11 +97,11 @@ public class UserRepository {
                 PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int user_id = rs.getInt("user_id");
+                Integer user_id = rs.getInt("user_id");
                 String user_name = rs.getString("user_name");
                 String password = rs.getString("password");
-                short status = rs.getShort("status");
-                short type = rs.getShort("type");
+                Integer status = rs.getInt("status");
+                Integer type = rs.getInt("type");
                 String email = rs.getString("email");
                 Timestamp created_at = rs.getTimestamp("created_at");
                 Timestamp update_at = rs.getTimestamp("update_at");
@@ -116,7 +116,7 @@ public class UserRepository {
         return tbl_user;
     }
 
-    public boolean deleteUser(int user_id) throws SQLException {
+    public boolean deleteUser(Integer user_id) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = DatabaseConnection.getConnection();
                 PreparedStatement statement = connection.prepareStatement(DELETE_USER_SQL)) {
@@ -132,8 +132,8 @@ public class UserRepository {
                 PreparedStatement statement = connection.prepareStatement(UPDATE_USER_SQL)) {
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getPassword());
-            statement.setShort(4, user.getStatus());
-            statement.setShort(5, user.getType());
+            statement.setInt(4, user.getStatus());
+            statement.setInt(5, user.getType());
             statement.setString(3, user.getEmail());
             statement.setTimestamp(6, user.getUpdateAt());
             statement.setString(7, user.getUpdateBy());

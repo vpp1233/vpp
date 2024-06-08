@@ -21,20 +21,9 @@ public class AdminHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("role") != null) {
-			short userRole = (short)session.getAttribute("role");
-			if (userRole == RoleConstants.ADMIN) {
-				RequestDispatcher rd = request.getRequestDispatcher("/views/admin/home.jsp");
-				rd.forward(request, response);
-			}else {
-				session.setAttribute("error", "Tài khoản không có quyền, yêu cầu đăng nhập!");
-				response.sendRedirect("login");
-			}
-		}else {
-			session.setAttribute("error", "Tài khoản không có quyền, yêu cầu đăng nhập!");
-			response.sendRedirect("login");
-		}
-		
+	
+		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/home.jsp");
+		rd.forward(request, response);	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

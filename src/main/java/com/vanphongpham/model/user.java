@@ -3,14 +3,18 @@ package com.vanphongpham.model;
 import java.sql.Timestamp;
 
 public class User extends BaseModel<User> {
-    private int userId;
+    private Integer userId;
     private String userName;
     private String password;
-    private short status;
-    private short type;
+    private Integer status;
+    private Integer type;
     private String email;
 
-    public User(int userId, String userName, String password, short status, short type, String email,
+    public User(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
+    	super(createdAt, updateAt, createBy, updateBy);
+    }
+    
+    public User(Integer userId, String userName, String password, Integer status, Integer type, String email,
             Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
 
@@ -22,11 +26,11 @@ public class User extends BaseModel<User> {
         this.type = type;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -54,19 +58,19 @@ public class User extends BaseModel<User> {
         this.password = password;
     }
 
-    public short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public short getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(short type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

@@ -36,7 +36,7 @@ pageEncoding="UTF-8" %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="index">Trang chủ</a>
+              <a class="nav-link" href="home">Trang chủ</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login">Đăng nhập</a>

@@ -36,7 +36,7 @@ pageEncoding="UTF-8" %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="index">Quản lý người dùng</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}/admin/user?action=list">Quản lý người dùng</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login">Quản lý sản phảm</a>

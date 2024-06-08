@@ -19,8 +19,8 @@ public class HomeController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("role") != null) {
-			short userRole = (short)session.getAttribute("role");
-			if (userRole == RoleConstants.ADMIN) {
+			String userRole = String.valueOf(session.getAttribute("role"));
+			if (RoleConstants.ADMIN.equals(userRole)) {
 				response.sendRedirect(request.getContextPath() + "/admin/home");
 			} else {
 				response.sendRedirect(request.getContextPath() + "/web/home");
