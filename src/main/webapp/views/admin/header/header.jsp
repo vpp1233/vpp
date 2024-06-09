@@ -25,67 +25,103 @@ pageEncoding="UTF-8" %>
 
   <body>
     <!-- Header với Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-      <div style="display: flex">
-        <a class="navbar-brand" href="index">
-          <img
-            src="${pageContext.request.contextPath}/images/logo.jpg"
-            alt="Logo"
-          />
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="${pageContext.request.contextPath}/admin/user?action=list">Quản lý người dùng</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Quản lý sản phảm</a>
-            </li>
+    <form action="logout" method="post">
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <div style="display: flex">
+          <a class="navbar-brand" href="index">
+            <img
+              src="${pageContext.request.contextPath}/images/logo.jpg"
+              alt="Logo"
+            />
+          </a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="${pageContext.request.contextPath}/admin/user"
+                  >Quản lý người dùng</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="${pageContext.request.contextPath}/admin/product"
+                  >Quản lý sản phẩm</a
+                >
+              </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="favorites">Quản lý sản phẩm ưu thích</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register">Báo cáo doanh thu</a>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="${pageContext.request.contextPath}/admin/category"
+                  >Quản lý danh mục sản phẩm</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="${pageContext.request.contextPath}/admin/report"
+                  >Báo cáo doanh thu</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarNav"
+          style="margin-right: 100px; justify-content: end"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="accountDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span
+                  ><i
+                    class="bi bi-person-circle"
+                    style="font-size: 20px; margin-left: 10px"
+                  ></i
+                ></span>
+                Xin chào, Admin
+              </a>
+              <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                <a
+                  class="dropdown-item"
+                  href="${pageContext.request.contextPath}/logout"
+                  >Đăng xuất</a
+                >
+              </div>
             </li>
           </ul>
         </div>
-      </div>
-
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
-        style="margin-right: 100px; justify-content: end"
-      >
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <div>
-              <span
-                ><i
-                  class="bi bi-person-circle"
-                  style="font-size: 20px; margin-left: 10px"
-                ></i
-              ></span>
-              Xin chào admin: duc
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      </nav>
+    </form>
 
     <!-- Nội dung của trang -->
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

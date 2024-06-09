@@ -1,6 +1,6 @@
-.navbar-custom {
+  .navbar-custom {
     background-color: #f9ffdb;
-    padding-left: 100px;
+    padding-left: 80px !important;
   }
 
   .navbar-nav .nav-link {

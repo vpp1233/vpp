@@ -1,6 +1,7 @@
 package com.vanphongpham.controller.login;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,6 @@ public class LogoutController extends HttpServlet{
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
     }
 }

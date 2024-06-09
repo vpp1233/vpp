@@ -76,6 +76,30 @@ session.removeAttribute("error"); } %>
             <div id="passwordError" class="text-danger error-message"></div>
           </div>
 
+          <div class="form-group">
+            <label for="passwordRetype" class="emailPasword"
+              >Nhập lại khẩu:</label
+            >
+            <div class="input-group">
+              <input
+                type="passwordRetype"
+                class="form-control"
+                id="passwordRetype"
+                placeholder="Nhập mật khẩu"
+                name="passwordRetype"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text bg-white" id="togglePassword">
+                  <i class="bi bi-eye-slash"></i>
+                </span>
+              </div>
+            </div>
+            <div
+              id="passwordRetypeError"
+              class="text-danger error-message"
+            ></div>
+          </div>
+
           <button type="submit" class="btn btn-primary">Đăng ký</button>
 
           <div class="text-center mt-2">
@@ -120,6 +144,14 @@ session.removeAttribute("error"); } %>
 
           const username = document.querySelector("#username").value;
           const password = document.querySelector("#password").value;
+          const passwordRetype =
+            document.querySelector("#passwordRetype").value;
+
+          const usernameError = document.querySelector("#usernameError");
+          const passwordError = document.querySelector("#passwordError");
+          const passwordRetypeError = document.querySelector(
+            "#passwordRetypeError"
+          );
 
           let isValid = true;
 
@@ -139,6 +171,17 @@ session.removeAttribute("error"); } %>
             isValid = false;
           } else {
             passwordError.innerText = ""; // Xóa thông báo lỗi nếu có
+          }
+
+          if (passwordRetype.trim() === "") {
+            passwordRetypeError.innerText =
+              "Nhập lại mật khẩu không được để trống.";
+            isValid = false;
+          } else if (password !== passwordRetype) {
+            passwordRetypeError.innerText = "Mật khẩu nhập lại không khớp.";
+            isValid = false;
+          } else {
+            passwordRetypeError.innerText = ""; // Xóa thông báo lỗi nếu có
           }
 
           // Nếu tất cả điều kiện đều được thỏa mãn, submit form

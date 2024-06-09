@@ -9,7 +9,7 @@ pageEncoding="UTF-8" %>
 
   <body>
     <%@ include file="./header/header.jsp" %>
-    <div><%@ include file="./user/list.jsp" %></div>
+    <div>Đây là trang chủ của Admin</div>
 
     <%@ include file="./footer/footer.jsp" %>
 

@@ -104,7 +104,7 @@ session.removeAttribute("error"); } %>
         this.querySelector("i").classList.toggle("bi-eye-slash");
       });
     </script>
-    <script>
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
 
@@ -150,6 +150,6 @@ session.removeAttribute("error"); } %>
           return passwordRegex.test(password);
         }
       });
-    </script>
+    </script> -->
   </body>
 </html>

@@ -68,14 +68,32 @@ pageEncoding="UTF-8" %>
         style="margin-right: 100px; justify-content: end"
       >
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="profile"
-              >Tài khoản<span
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="accountDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Tài khoản
+              <span
                 ><i
                   class="bi bi-person-circle"
                   style="font-size: 20px; margin-left: 10px"
-                ></i></span
-            ></a>
+                ></i
+              ></span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropdown">
+              <a class="dropdown-item" href="profile">Hồ sơ</a>
+              <a
+                class="dropdown-item"
+                href="${pageContext.request.contextPath}/logout"
+                >Đăng xuất</a
+              >
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="cart"
@@ -95,4 +113,7 @@ pageEncoding="UTF-8" %>
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

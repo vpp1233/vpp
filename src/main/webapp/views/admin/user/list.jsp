@@ -18,11 +18,15 @@ prefix="c" %>
     />
   </head>
   <body>
+    <%@ include file="../header/header.jsp" %>
+
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Quản lý người dùng</h2>
         <button class="btn btn-success">
-          <a href="${pageContext.request.contextPath}/admin/user?action=new"
+          <a
+            href="${pageContext.request.contextPath}/admin/user?action=new"
+            style="color: black; text-decoration: none"
             >Thêm mới</a
           >
         </button>
@@ -37,7 +41,7 @@ prefix="c" %>
             <th>Trạng thái</th>
             <th>Loại người dùng</th>
             <th>Ngày tạo</th>
-            <th></th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -46,16 +50,21 @@ prefix="c" %>
               <tr>
                 <td>${user.userId}</td>
                 <td>${user.userName}</td>
+                <td>${user.password}</td>
                 <td>${user.email}</td>
                 <td>${user.status}</td>
                 <td>${user.type}</td>
-                <td>
-                  <a href="user?action=edit&userId=${user.userId}">Chỉnh sửa</a>
+                <td>01/01/2024</td>
+                <td style="display: flex; justify-content: space-around">
+                  <a href="user?action=edit&userId=${user.userId}">
+                    <i class="bi bi-pencil-fill" style="color: yellow"></i>
+                  </a>
                   <a
                     href="user?action=delete&userId=${user.userId}"
-                    onclick="return confirm('Bạn có chắc chắn muốn xóa?');"
-                    >Xóa</a
+                    onclick="return confirm('Bạn có chắc chắn muốn xóa user này?');"
                   >
+                    <i class="bi bi-trash3-fill" style="color: red"></i>
+                  </a>
                 </td>
               </tr>
             </c:forEach>
@@ -63,5 +72,6 @@ prefix="c" %>
         </tbody>
       </table>
     </div>
+    <%@ include file="../footer/footer.jsp" %>
   </body>
 </html>
