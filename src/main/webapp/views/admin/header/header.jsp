@@ -55,7 +55,7 @@ pageEncoding="UTF-8" %>
                 <a
                   class="nav-link"
                   href="${pageContext.request.contextPath}/admin/category"
-                  >Quản lý danh mục sản phẩm</a
+                  >Quản lý danh mục</a
                 >
               </li>
               <li class="nav-item">

@@ -9,7 +9,6 @@ public class AuthorizationService {
         } else if ((RoleConstants.GUEST.equals(role) || RoleConstants.USER.equals(role)) && 
         		(path.startsWith("/web") 
         		|| path.startsWith("/home")
-                || path.startsWith("/")
         		|| path.startsWith("/forgot"))) {
             return true;
         }

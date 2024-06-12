@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.vanphongpham.model.User;
-import com.vanphongpham.service.UserService;
+import com.vanphongpham.service.admin.UserService;
 
 //@WebServlet(name = "UserController", urlPatterns = { "/user" })
 @WebServlet("/admin/user")
@@ -27,6 +27,10 @@ public class UserController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -126,6 +130,10 @@ public class UserController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         doGet(request, response);
     }
 }

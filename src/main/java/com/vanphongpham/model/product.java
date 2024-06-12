@@ -6,33 +6,34 @@ public class Product extends BaseModel<Product> {
     private int productId;
     private String productName;
     private String image;
-    private int categoryId;
+    private float price;
     private String description;
     private float salePrice;
-    private int quantity;
     private int quantitySold;
-    private short status;
-    private short isfavorite;
-    private int customerId;
-    private int cartId;
+    private int status;
+    private int isfavorite;
+    private int categoryId;
+    private String categoryName;
 
-    public Product(int productId,
-            String productName, String image, int categoryId, String description, float salePrice, int quantity,
-            int quantitySold, short status, short isfavorite, int customerId, int cartId, Timestamp createdAt,
-            Timestamp updateAt, String createBy, String updateBy) {
+    public Product(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
+    	super(createdAt, updateAt, createBy, updateBy);
+    }
+    
+    public Product(int productId, String productName, String image, float price, String description, 
+    		float salePrice, int quantitySold, int status, int isfavorite, int categoryId, String categoryName,
+    		Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.productId = productId;
         this.productName = productName;
         this.image = image;
-        this.categoryId = categoryId;
-        this.description = description;
+        this.price = price;
         this.salePrice = salePrice;
-        this.quantity = quantity;
+        this.description = description;
         this.quantitySold = quantitySold;
         this.status = status;
         this.isfavorite = isfavorite;
-        this.customerId = customerId;
-        this.cartId = cartId;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public int getProductId() {
@@ -59,6 +60,14 @@ public class Product extends BaseModel<Product> {
         this.image = image;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+    
     public int getCategoryId() {
         return categoryId;
     }
@@ -83,14 +92,6 @@ public class Product extends BaseModel<Product> {
         this.salePrice = salePrice;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public int getQuantitySold() {
         return quantitySold;
     }
@@ -99,36 +100,28 @@ public class Product extends BaseModel<Product> {
         this.quantitySold = quantitySold;
     }
 
-    public short getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public short getIsfavorite() {
+    public int getIsfavorite() {
         return isfavorite;
     }
 
-    public void setIsfavorite(short isfavorite) {
+    public void setIsfavorite(int isfavorite) {
         this.isfavorite = isfavorite;
     }
 
-    public int getCustomerId() {
-        return customerId;
-    }
+	public String getCategoryName() {
+		return categoryName;
+	}
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
 }

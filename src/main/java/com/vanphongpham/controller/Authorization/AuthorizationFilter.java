@@ -32,6 +32,7 @@ public class AuthorizationFilter implements Filter {
 		
 		String loginURI = httpRequest.getContextPath() + "/login";
 		String registerURI = httpRequest.getContextPath() + "/register";
+		String logoutURI = httpRequest.getContextPath() + "/logout";
 		String requestURI = httpRequest.getRequestURI();
 		String contextPath = httpRequest.getContextPath();
 

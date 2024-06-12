@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.vanphongpham.model.User;
-import com.vanphongpham.service.UserService;
+import com.vanphongpham.service.admin.UserService;
 import com.vanphongpham.util.ActionConstants;
 
 //@WebServlet(name = "LoginController", urlPatterns = { "/login" })
