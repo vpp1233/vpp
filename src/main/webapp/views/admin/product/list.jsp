@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -55,9 +53,16 @@ prefix="c" %>
                 <td>${product.productId}</td>
                 <td>${product.productName}</td>
                 <td>${product.image}</td>
-                <td><fmt:formatNumber value="${product.price}" type="number" /></td>
+                <td>
+                  <fmt:formatNumber value="${product.price}" type="number" />
+                </td>
                 <td>${product.description}</td>
-                <td><fmt:formatNumber value="${product.salePrice}" type="number" /></td>
+                <td>
+                  <fmt:formatNumber
+                    value="${product.salePrice}"
+                    type="number"
+                  />
+                </td>
                 <td>${product.quantitySold}</td>
                 <td>${product.status}</td>
                 <td>${product.isfavorite}</td>
@@ -65,11 +70,9 @@ prefix="c" %>
 
                 <td style="display: flex; justify-content: space-around">
                   <a href="product?action=edit&productId=${product.productId}">
-                    <i class="bi bi-pencil-fill" style="color: brown"></i>
+                    <i class="bi bi-pencil-fill" style="color: yellow"></i>
                   </a>
-                  &nbsp
-                  &nbsp
-                  &nbsp
+                  &nbsp &nbsp &nbsp
                   <a
                     href="product?action=delete&productId=${product.productId}"
                     onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');"

@@ -1,6 +1,7 @@
 package com.vanphongpham.controller.Authorization;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -42,7 +43,7 @@ public class AuthorizationFilter implements Filter {
 		boolean loginRequest = ((requestURI.equals(loginURI)) || (requestURI.equals(registerURI)));
 
 		// Cho phép truy cập đến / mà không cần đăng nhập
-		boolean webRequest = requestURI.endsWith("/vanphongpham/");
+		boolean webRequest = (requestURI.endsWith("/vanphongpham-1.0/") || requestURI.endsWith("/vanphongpham"));
 		
 		boolean resourceRequest = requestURI.endsWith(".css") || requestURI.endsWith(".jsp");
 		

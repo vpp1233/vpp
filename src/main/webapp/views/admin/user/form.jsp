@@ -1,55 +1,133 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
+
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Form người dùng</title>
-</head>
-<body>
-    <h2><c:choose>
-        <c:when test="${not empty user}">
-            Chỉnh sửa người dùng
-        </c:when>
-        <c:otherwise>
-            Thêm người dùng mới
-        </c:otherwise>
-    </c:choose></h2>
-    <form action="${pageContext.request.contextPath}/admin/user" method="post">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Form Bootstrap</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>
+        <c:choose>
+          <c:when test="${not empty user}"> Chỉnh sửa người dùng </c:when>
+          <c:otherwise> Thêm người dùng mới </c:otherwise>
+        </c:choose>
+      </h2>
+      <form
+        action="${pageContext.request.contextPath}/admin/user"
+        method="post"
+        class="needs-validation"
+        novalidate
+      >
         <c:if test="${not empty user.userId}">
-            <input type="hidden" name="userId" value="${user.userId}" />
-            <input type="hidden" name="action" value="update" />
+          <input type="hidden" name="userId" value="${user.userId}" />
+          <input type="hidden" name="action" value="update" />
         </c:if>
         <c:if test="${empty user.userId}">
-            <input type="hidden" name="action" value="insert" />
+          <input type="hidden" name="action" value="insert" />
         </c:if>
-        <table>
-            <tr>
-                <td>Tên người dùng:</td>
-                <td><input type="text" name="userName" value="${user.userName}" required /></td>
-            </tr>
-            <tr>
-                <td>Mật khẩu:</td>
-                <td><input type="password" name="password" value="${user.password}" required /></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="email" name="email" value="${user.email}" required /></td>
-            </tr>
-            <tr>
-                <td>Trạng thái:</td>
-                <td><input type="number" name="status" value="${user.status}" required /></td>
-            </tr>
-            <tr>
-                <td>Loại:</td>
-                <td><input type="number" name="type" value="${user.type}" required /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="save" /></td>
-            </tr>
-        </table>
-    </form>
-    <a href="${pageContext.request.contextPath}/admin/user?action=list">Trở về danh sách</a>
-</body>
+
+        <div class="form-group">
+          <label for="userName">Tên người dùng:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userName"
+            name="userName"
+            value="${user.userName}"
+            required
+          />
+          <div class="invalid-feedback">Vui lòng nhập tên người dùng.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            value="${user.password}"
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+          />
+          <div class="invalid-feedback">Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="${user.email}"
+            required
+          />
+          <div class="invalid-feedback">Vui lòng nhập email hợp lệ.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Trạng thái:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="status"
+            name="status"
+            value="${user.status}"
+            required
+          />
+          <div class="invalid-feedback">Vui lòng nhập trạng thái.</div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary btn-block">Lưu</button>
+            </div>
+            <div class="col-6">
+              <a href="${pageContext.request.contextPath}/admin/user?action=list" class="btn btn-secondary btn-block">Trở về danh sách</a>
+            </div>
+          </div>
+    </div>
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function () {
+        "use strict";
+        window.addEventListener(
+          "load",
+          function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName("needs-validation");
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(
+              forms,
+              function (form) {
+                form.addEventListener(
+                  "submit",
+                  function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                  },
+                  false
+                );
+              }
+            );
+          },
+          false
+        );
+      })();
+    </script>
+  </body>
 </html>

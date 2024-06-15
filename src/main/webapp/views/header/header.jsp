@@ -9,8 +9,8 @@ pageEncoding="UTF-8" %>
     <title>Header</title>
     <!-- Bootstrap CSS -->
     <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
@@ -24,10 +24,15 @@ pageEncoding="UTF-8" %>
   </head>
 
   <body>
+    <% HttpSession currentSession = request.getSession(false); String userName =
+    (currentSession != null) ? (String) currentSession.getAttribute("user") :
+    null; Integer role = (currentSession != null) ? (Integer)
+    currentSession.getAttribute("role") : null; %>
+
     <!-- Header với Bootstrap -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div style="display: flex">
-        <a class="navbar-brand" href="index">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}">
           <img
             src="${pageContext.request.contextPath}/images/logo.jpg"
             alt="Logo"
@@ -36,7 +41,9 @@ pageEncoding="UTF-8" %>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="home">Trang chủ</a>
+              <a class="nav-link" href="${pageContext.request.contextPath}"
+                >Trang chủ</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="login">Đăng nhập</a>
@@ -113,7 +120,5 @@ pageEncoding="UTF-8" %>
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
 </html>

@@ -24,13 +24,17 @@ pageEncoding="UTF-8" %>
   </head>
 
   <body>
+    <% HttpSession currentSession = request.getSession(false); String userName =
+    (currentSession != null) ? (String) currentSession.getAttribute("user") :
+    null; Integer role = (currentSession != null) ? (Integer)
+    currentSession.getAttribute("role") : null; %>
     <!-- Header với Bootstrap -->
     <form action="logout" method="post">
       <nav class="navbar navbar-expand-lg navbar-custom">
         <div style="display: flex">
           <a class="navbar-brand" href="index">
             <img
-              src="${pageContext.request.contextPath}/images/logo.jpg"
+              src="${pageContext.request.contextPath}/webapp/images/logo.jpg"
               alt="Logo"
             />
           </a>
