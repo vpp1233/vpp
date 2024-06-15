@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Quản lý người dùng</h2>
+        <h2>Quản lý danh mục</h2>
         <button class="btn btn-success">
           <a
             href="${pageContext.request.contextPath}/admin/category?action=new"
@@ -36,6 +37,7 @@
             <th>ID</th>
             <th>Tên danh mục</th>
             <th>Trạng thái</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -46,7 +48,9 @@
                 <td>${category.categoryName}</td>
                 <td>${category.status}</td>
                 <td style="display: flex; justify-content: space-around">
-                  <a href="category?action=edit&categoryId=${category.categoryId}">
+                  <a
+                    href="category?action=edit&categoryId=${category.categoryId}"
+                  >
                     <i class="bi bi-pencil-fill" style="color: yellow"></i>
                   </a>
                   <a

@@ -46,13 +46,25 @@ pageEncoding="UTF-8" %>
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login">Đăng nhập</a>
+              <a
+                class="nav-link"
+                href="${pageContext.request.contextPath}/login"
+                >Đăng nhập</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="register">Đăng ký</a>
+              <a
+                class="nav-link"
+                href="${pageContext.request.contextPath}/register"
+                >Đăng ký</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="favorites">Sản phẩm ưa thích</a>
+              <a
+                class="nav-link"
+                href="${pageContext.request.contextPath}/favorites"
+                >Sản phẩm ưa thích</a
+              >
             </li>
           </ul>
         </div>
@@ -103,7 +115,7 @@ pageEncoding="UTF-8" %>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart"
+            <a class="nav-link" href="${pageContext.request.contextPath}/cart"
               >Giỏ hàng
               <span
                 ><i

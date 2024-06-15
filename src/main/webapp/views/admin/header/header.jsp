@@ -32,9 +32,12 @@ pageEncoding="UTF-8" %>
     <form action="logout" method="post">
       <nav class="navbar navbar-expand-lg navbar-custom">
         <div style="display: flex">
-          <a class="navbar-brand" href="index">
+          <a
+            class="navbar-brand"
+            href="${pageContext.request.contextPath}/admin/home"
+          >
             <img
-              src="${pageContext.request.contextPath}/webapp/images/logo.jpg"
+              src="${pageContext.request.contextPath}/images/logo.jpg"
               alt="Logo"
             />
           </a>

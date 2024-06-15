@@ -11,7 +11,7 @@ prefix="c" %>
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <title>Form Bootstrap</title>
+    <title>Form người dùng</title>
   </head>
   <body>
     <div class="container mt-5">
@@ -75,22 +75,31 @@ prefix="c" %>
           <div class="invalid-feedback">Vui lòng nhập email hợp lệ.</div>
         </div>
 
+       
         <div class="form-group">
           <label for="status">Trạng thái:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="status"
-            name="status"
-            value="${user.status}"
-            required
-          />
-          <div class="invalid-feedback">Vui lòng nhập trạng thái.</div>
+          <select class="form-control" id="status" name="status" required>
+            <option value="">Chọn trạng thái</option>
+            <option value="1" ${user.status == 1 ? 'selected' : ''}>Hoạt động</option>
+            <option value="2" ${user.status == 2 ? 'selected' : ''}>Không hoạt động</option>
+            <option value="3" ${user.status == 3 ? 'selected' : ''}>Đang chờ</option>
+          </select>
+          <div class="invalid-feedback">Vui lòng chọn trạng thái.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="type">Loại người dùng:</label>
+          <select class="form-control" id="type" name="type" required>
+            <option value="">Chọn loại người dùng</option>
+            <option value="1" ${user.status == 1 ? 'selected' : ''}>Quản trị viên</option>
+            <option value="2" ${user.status == 2 ? 'selected' : ''}>Người dùng thường</option>
+          </select>
+          <div class="invalid-feedback">Vui lòng chọn trạng thái.</div>
         </div>
 
         <div class="form-row">
             <div class="col-6">
-              <button type="submit" class="btn btn-primary btn-block">Lưu</button>
+              <button type="submit" class="btn btn-primary btn-block">Lưu người dùng</button>
             </div>
             <div class="col-6">
               <a href="${pageContext.request.contextPath}/admin/user?action=list" class="btn btn-secondary btn-block">Trở về danh sách</a>

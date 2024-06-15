@@ -21,7 +21,7 @@ session.removeAttribute("error"); } %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng ký</title>
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
@@ -36,7 +36,7 @@ session.removeAttribute("error"); } %>
   </head>
 
   <body>
-    <%@ include file="../header/header.jsp" %>
+    <%@ include file="../../views/header/header.jsp" %>
     <div class="body-login">
       <div class="login-container">
         <h2 class="text-center">Đăng ký</h2>
@@ -89,7 +89,10 @@ session.removeAttribute("error"); } %>
                 name="passwordRetype"
               />
               <div class="input-group-append">
-                <span class="input-group-text bg-white" id="togglePassword">
+                <span
+                  class="input-group-text bg-white"
+                  id="togglePasswordRetype"
+                >
                   <i class="bi bi-eye-slash"></i>
                 </span>
               </div>
@@ -113,28 +116,36 @@ session.removeAttribute("error"); } %>
 
     <script>
       const togglePassword = document.querySelector("#togglePassword");
+      const password = document.querySelector("#password");
+
+      togglePassword.addEventListener("click", function () {
+        // toggle the type attribute
+        const type =
+          password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        // toggle the eye slash icon
+        this.querySelector("i").classList.toggle("bi-eye");
+        this.querySelector("i").classList.toggle("bi-eye-slash");
+      });
+
       const togglePasswordRetype = document.querySelector(
         "#togglePasswordRetype"
       );
-      const password = document.querySelector("#password");
       const passwordRetype = document.querySelector("#passwordRetype");
 
-      function togglePasswordVisibility(input, icon) {
+      togglePasswordRetype.addEventListener("click", function () {
+        // toggle the type attribute
         const type =
-          input.getAttribute("type") === "password" ? "text" : "password";
-        input.setAttribute("type", type);
-        icon.classList.toggle("bi-eye");
-        icon.classList.toggle("bi-eye-slash");
-      }
-
-      togglePasswordRetype.addEventListener("click", function (e) {
-        togglePasswordVisibility(passwordRetype, this.querySelector("i"));
-      });
-
-      togglePassword.addEventListener("click", function (e) {
-        togglePasswordVisibility(password, this.querySelector("i"));
+          passwordRetype.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordRetype.setAttribute("type", type);
+        // toggle the eye slash icon
+        this.querySelector("i").classList.toggle("bi-eye");
+        this.querySelector("i").classList.toggle("bi-eye-slash");
       });
     </script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
@@ -201,5 +212,7 @@ session.removeAttribute("error"); } %>
         }
       });
     </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -44,6 +44,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
             <th>Trạng thái</th>
             <th>Sản phẩm yêu thích</th>
             <th>Danh mục</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
