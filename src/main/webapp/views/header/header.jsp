@@ -9,8 +9,8 @@ pageEncoding="UTF-8" %>
     <title>Header</title>
     <!-- Bootstrap CSS -->
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
       rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
@@ -30,6 +30,7 @@ pageEncoding="UTF-8" %>
     currentSession.getAttribute("role") : null; %>
 
     <!-- Header với Bootstrap -->
+
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div style="display: flex">
         <a class="navbar-brand" href="${pageContext.request.contextPath}">
@@ -106,7 +107,11 @@ pageEncoding="UTF-8" %>
               ></span>
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropdown">
-              <a class="dropdown-item" href="profile">Hồ sơ</a>
+              <a
+                class="dropdown-item"
+                href="${pageContext.request.contextPath}/profile"
+                >Hồ sơ</a
+              >
               <a
                 class="dropdown-item"
                 href="${pageContext.request.contextPath}/logout"
@@ -132,5 +137,7 @@ pageEncoding="UTF-8" %>
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

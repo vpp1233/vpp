@@ -21,7 +21,7 @@ session.removeAttribute("error"); } %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng ký</title>
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
@@ -212,7 +212,5 @@ session.removeAttribute("error"); } %>
         }
       });
     </script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

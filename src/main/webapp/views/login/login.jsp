@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> 
-<%@ page import="com.vanphongpham.util.ActionConstants"%> 
-<%-- Kiểm tra nếu có thông báo lỗi trong session thì hiển thị popup --%> 
-<%String error = (String) session.getAttribute("error"); if (error != null) { %>
+pageEncoding="UTF-8" %> <%@ page
+import="com.vanphongpham.util.ActionConstants"%> <%-- Kiểm tra nếu có thông báo
+lỗi trong session thì hiển thị popup --%> <%String error = (String)
+session.getAttribute("error"); if (error != null) { %>
 <script>
   // Hiển thị thông báo lỗi bằng SweetAlert
   Swal.fire({
@@ -105,7 +105,7 @@ session.removeAttribute("error"); } %>
         this.querySelector("i").classList.toggle("bi-eye-slash");
       });
     </script>
-    <!-- <script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
 
@@ -151,6 +151,6 @@ session.removeAttribute("error"); } %>
           return passwordRegex.test(password);
         }
       });
-    </script> -->
+    </script>
   </body>
 </html>
