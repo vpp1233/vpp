@@ -18,7 +18,7 @@ public class ProductService {
         productRepository.insertProduct(product);
     }
 
-    public Product getProductById(int id) {
+    public Product getProductById(Integer id) {
         return productRepository.getProductById(id);
     }
 
@@ -30,7 +30,7 @@ public class ProductService {
         return productRepository.updateProduct(product);
     }
 
-    public boolean deleteProduct(int id) throws SQLException {
+    public boolean deleteProduct(Integer id) throws SQLException {
         return productRepository.deleteProduct(id);
     }
 }

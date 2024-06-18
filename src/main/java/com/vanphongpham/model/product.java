@@ -3,24 +3,24 @@ package com.vanphongpham.model;
 import java.sql.Timestamp;
 
 public class Product extends BaseModel<Product> {
-    private int productId;
+    private Integer productId;
     private String productName;
     private String image;
     private float price;
     private String description;
     private float salePrice;
-    private int quantitySold;
-    private int status;
-    private int isfavorite;
-    private int categoryId;
+    private Integer quantitySold;
+    private Integer status;
+    private Integer isfavorite;
+    private Integer categoryId;
     private String categoryName;
 
     public Product(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
     	super(createdAt, updateAt, createBy, updateBy);
     }
     
-    public Product(int productId, String productName, String image, float price, String description, 
-    		float salePrice, int quantitySold, int status, int isfavorite, int categoryId, String categoryName,
+    public Product(Integer productId, String productName, String image, float price, String description, 
+    		float salePrice, Integer quantitySold, Integer status, Integer isfavorite, Integer categoryId, String categoryName,
     		Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.productId = productId;
@@ -36,11 +36,11 @@ public class Product extends BaseModel<Product> {
         this.categoryName = categoryName;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -68,11 +68,11 @@ public class Product extends BaseModel<Product> {
         this.price = price;
     }
     
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -92,27 +92,27 @@ public class Product extends BaseModel<Product> {
         this.salePrice = salePrice;
     }
 
-    public int getQuantitySold() {
+    public Integer getQuantitySold() {
         return quantitySold;
     }
 
-    public void setQuantitySold(int quantitySold) {
+    public void setQuantitySold(Integer quantitySold) {
         this.quantitySold = quantitySold;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public int getIsfavorite() {
+    public Integer getIsfavorite() {
         return isfavorite;
     }
 
-    public void setIsfavorite(int isfavorite) {
+    public void setIsfavorite(Integer isfavorite) {
         this.isfavorite = isfavorite;
     }
 

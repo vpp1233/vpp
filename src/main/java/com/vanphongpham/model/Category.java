@@ -3,15 +3,15 @@ package com.vanphongpham.model;
 import java.sql.Timestamp;
 
 public class Category extends BaseModel<Category> {
-    private int categoryId;
+    private Integer categoryId;
     private String categoryName;
-    private int status;
+    private Integer status;
 
     public Category(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
     	super(createdAt, updateAt, createBy, updateBy);
     }
     
-    public Category(int categoryId,String categoryName, int status,
+    public Category(Integer categoryId,String categoryName, Integer status,
     		Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
     	
         super(createdAt, updateAt, createBy, updateBy);
@@ -20,11 +20,11 @@ public class Category extends BaseModel<Category> {
         this.status = status;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
     
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
     
@@ -36,11 +36,11 @@ public class Category extends BaseModel<Category> {
         return categoryName;
     }
 
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

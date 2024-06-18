@@ -40,10 +40,10 @@ public class AuthorizationFilter implements Filter {
 		boolean loggedIn = session != null && session.getAttribute("userId") != null;
 		
 		// Cho phép truy cập đến /login & /register mà không cần đăng nhập
-		boolean loginRequest = ((requestURI.equals(loginURI)) || (requestURI.equals(registerURI)));
+		boolean loginRequest = requestURI.equals(loginURI) || requestURI.equals(registerURI);
 
 		// Cho phép truy cập đến / mà không cần đăng nhập
-		boolean webRequest = (requestURI.endsWith("/vanphongpham-1.0/") || requestURI.endsWith("/vanphongpham"));
+		boolean webRequest = (requestURI.endsWith("/vanphongpham-1.0/") || requestURI.endsWith("/vanphongpham/"));
 		
 		boolean resourceRequest = requestURI.endsWith(".css") || requestURI.endsWith(".jsp");
 		
@@ -56,7 +56,7 @@ public class AuthorizationFilter implements Filter {
 				rd.forward(request, response);
 			}
 		}else {
-			chain.doFilter(request, response);
+ 			chain.doFilter(request, response);
 		}
 	}
 

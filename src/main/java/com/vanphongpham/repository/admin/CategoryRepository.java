@@ -39,7 +39,7 @@ public class CategoryRepository {
 	public Category getCategoryById(Integer id) {
 		Category category = null;
 		try (Connection connection = DatabaseConnection.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
 			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
@@ -60,7 +60,7 @@ public class CategoryRepository {
 	public List<Category> selectAllCategories() {
 		List<Category> categories = new ArrayList<>();
 		try (Connection connection = DatabaseConnection.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORIES)) {
+			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORIES)) {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int categoryId = rs.getInt("category_id");
