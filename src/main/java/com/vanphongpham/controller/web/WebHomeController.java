@@ -45,10 +45,9 @@ public class WebHomeController extends HttpServlet {
 				e.printStackTrace();
 			}
         }
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        String json = new Gson().toJson(categoryProducts);
-        response.getWriter().write(json);
+        request.setAttribute("categoryProducts", categoryProducts);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
         
 	 }
 

@@ -10,7 +10,7 @@
 
 	<!--Khi khởi chạy sẽ sử dụng file này-->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>load.jsp</welcome-file>
 	</welcome-file-list>
 
 

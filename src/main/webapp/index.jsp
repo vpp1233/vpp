@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,43 +31,32 @@
   <body>
     <%@ include file="./views/header/header.jsp" %>
 
-    <h2>Danh sách sản phẩm</h2>
-    
-    <div id="category-products"></div>
+    <h1>Product Categories</h1>
+
+     <c:choose>
+        <c:when test="${not empty categoryProducts}">
+            <c:forEach var="entry" items="${categoryProducts}">
+                <h2>${entry.key}</h2>
+                <ul>
+                    <c:forEach var="product" items="${entry.value}">
+                        <li>
+                            <strong>${product.productName}</strong><br>
+                            Price: <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="VND"/><br>
+                            Description: ${product.description}<br>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <p>No products available.</p>
+        </c:otherwise>
+    </c:choose>
      
     </div>
     <%@ include file="./views/footer/footer.jsp" %>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('${pageContext.request.contextPath}/web/home')
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('category-products');
-                    for (const [category, products] of Object.entries(data)) {
-                        const categoryElement = document.createElement('h2');
-                        categoryElement.textContent = category;
-                        container.appendChild(categoryElement);
-
-                        const productList = document.createElement('ul');
-                        products.forEach(product => {
-                            const productItem = document.createElement('li');
-                            productItem.innerHTML = `
-                                <strong>${product.productName}</strong><br>
-                                <img src="${product.image}" alt="${product.productName}" style="width:100px;height:100px;"><br>
-                                Price: ${product.price}<br>
-                                Description: ${product.description}<br>
-                            `;
-                            productList.appendChild(productItem);
-                        });
-                        container.appendChild(productList);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    </script>
   </body>
 </html>
