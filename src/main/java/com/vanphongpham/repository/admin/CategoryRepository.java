@@ -144,6 +144,24 @@ public class CategoryRepository {
 		return rowUpdated;
 	}
 
+	public Timestamp getLatestUpdatedAt() {
+		Timestamp latestTimestamp = null;
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String sql = "SELECT MAX(update_at) AS latest_update FROM tbl_danhmuc";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+            	latestTimestamp = resultSet.getTimestamp("latest_update");
+            }
+            if (latestTimestamp == null) {
+                latestTimestamp = Timestamp.valueOf("1970-01-01 00:00:00");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return latestTimestamp;
+    }
+	
 	private void printSQLException(SQLException ex) {
 		for (Throwable e : ex) {
 			if (e instanceof SQLException) {

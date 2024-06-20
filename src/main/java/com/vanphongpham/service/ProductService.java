@@ -1,10 +1,9 @@
 package com.vanphongpham.service;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.sql.DataSource;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -14,19 +13,14 @@ import com.vanphongpham.repository.ProductRepository;
 
 public class ProductService {
 	private ProductRepository productRepository;
-	private Cache<String, List<Product>> cache;
-	private DataSource dataSource;
+	private Cache<String, CacheEntry> listCache;
 	
 	public ProductService() {
         this.productRepository = new ProductRepository();
-        cache = Caffeine.newBuilder()
+        this.listCache = Caffeine.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES) // Thời gian hết hạn của cache
                 .maximumSize(100) // Số lượng tối đa của các entry trong cache
                 .build();
-    }
-	
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
     }
 	
 	public List<Product> getLatestProductsByCategory(Integer categoryId, Integer limit) throws SQLException {
@@ -37,18 +31,38 @@ public class ProductService {
         String cacheKey = "getLatestProductsByCategory_" + categoryId + "_" + limit;
         
         // Kiểm tra cache trước khi truy vấn cơ sở dữ liệu
-        List<Product> products = cache.getIfPresent(cacheKey);
-        if (products != null) {
-            return products;
+        CacheEntry cacheEntry = listCache.getIfPresent(cacheKey);
+        Timestamp latestTimestamp = productRepository.getLatestUpdatedAt();
+        if (cacheEntry != null && cacheEntry.getTimestamp().equals(latestTimestamp)) {
+            return cacheEntry.getLatestProductsByCategory();
         }
         
         // Nếu cache không có, truy vấn cơ sở dữ liệu
-        products = productRepository.getLatestProductsByCategory(categoryId, limit);
+        List<Product> products = productRepository.getLatestProductsByCategory(categoryId, limit);
 
-        // Đặt kết quả vào cache
-        cache.put(cacheKey, products);
+        if (products != null) {
+            listCache.put(cacheKey, new CacheEntry(products, latestTimestamp));
+        }
 
         return products;
+    }
+	
+	private static class CacheEntry {
+        private List<Product> products;
+        private Timestamp timestamp;
+
+        public CacheEntry(List<Product> products, Timestamp timestamp) {
+            this.products = products;
+            this.timestamp = timestamp;
+        }
+
+        public List<Product> getLatestProductsByCategory() {
+            return products;
+        }
+
+        public Timestamp getTimestamp() {
+            return timestamp;
+        }
     }
 	
 }

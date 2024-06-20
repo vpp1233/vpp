@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,9 @@ public class ProductRepository {
 		            product.setDescription(resultSet.getString("description"));
 		            product.setCategoryId(resultSet.getInt("category_id"));
 		            product.setCreatedAt(resultSet.getTimestamp("created_at"));
+		            product.setCreateBy(resultSet.getString("create_by"));
+		            product.setUpdateAt(resultSet.getTimestamp("update_at"));
+		            product.setUpdateBy(resultSet.getString("update_by"));
 		            products.add(product);
 		        }
 	    }catch (SQLException e) {
@@ -36,6 +40,24 @@ public class ProductRepository {
 		}
 	    return products;
 	}
+	
+	public Timestamp getLatestUpdatedAt() {
+		Timestamp latestTimestamp = null;
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String sql = "SELECT MAX(update_at) AS latest_update FROM tbl_sanpham";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+            	latestTimestamp = resultSet.getTimestamp("latest_update");
+            }
+            if (latestTimestamp == null) {
+                latestTimestamp = Timestamp.valueOf("1970-01-01 00:00:00");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return latestTimestamp;
+    }
 	
 	private void printSQLException(SQLException ex) {
 		for (Throwable e : ex) {
