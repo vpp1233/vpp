@@ -9,14 +9,9 @@ pageEncoding="UTF-8" %>
     <title>Footer</title>
     <!-- Bootstrap CSS -->
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
-
     <link
       href="${pageContext.request.contextPath}/views/footer/footer.css"
       rel="stylesheet"
@@ -37,25 +32,31 @@ pageEncoding="UTF-8" %>
           <div class="container-contact">
             <div class="content-contact">
               <div>
-                <i class="bi bi-geo-alt-fill" style="font-size: 20px"></i>
+                <image
+                  src="${pageContext.request.contextPath}/views/images/geo-alt-fill.svg"
+                  width="20"
+                  height="20"
+                />
               </div>
               <div>Địa chỉ: 125 Xuân Thủy, Cầu Giấy, Hà Nội.</div>
             </div>
             <div class="content-contact">
               <div>
-                <i
-                  class="bi bi-telephone-inbound-fill"
-                  style="font-size: 20px"
-                ></i>
+                <image
+                  src="${pageContext.request.contextPath}/views/images/telephone-inbound-fill.svg"
+                  width="20"
+                  height="20"
+                />
               </div>
               <div>Điện thoại: 0123 456 789</div>
             </div>
             <div class="content-contact">
               <div>
-                <i
-                  class="bi bi-envelope-check-fill"
-                  style="font-size: 20px"
-                ></i>
+                <image
+                  src="${pageContext.request.contextPath}/views/images/envelope-arrow-down-fill.svg"
+                  width="20"
+                  height="20"
+                />
               </div>
               <div>starfruit1st@gmail.com</div>
             </div>
@@ -64,27 +65,31 @@ pageEncoding="UTF-8" %>
         <div class="col-md-4">
           <h3>Mạng xã hội</h3>
           <div class="content-social">
-            <a href="https://www.facebook.com/"
-              ><i
-                class="bi bi-facebook fa-2xl"
-                style="font-size: 24px; color: black"
-              ></i
-            ></a>
-            <a href="https://www.youtube.com/"
-              ><i
-                class="bi bi-youtube"
-                style="font-size: 24px; color: black"
-              ></i
-            ></a>
-            <a href="https://www.tiktok.com/"
-              ><i class="bi bi-tiktok" style="font-size: 24px; color: black"></i
-            ></a>
-            <a href="https://www.instagram.com/"
-              ><i
-                class="bi bi-instagram"
-                style="font-size: 24px; color: black"
-              ></i
-            ></a>
+            <a href="https://www.facebook.com/" role="button">
+              <image
+                src="${pageContext.request.contextPath}/views/images/facebook.svg"
+                width="20"
+                height="20"
+              />
+            </a>
+            <a href="https://www.youtube.com/" role="button">
+              <image
+                src="${pageContext.request.contextPath}/views/images/youtube.svg"
+                width="20"
+                height="20"
+            /></a>
+            <a href="https://www.tiktok.com/" role="button"
+              ><image
+                src="${pageContext.request.contextPath}/views/images/tiktok.svg"
+                width="20"
+                height="20"
+            /></a>
+            <a href="https://www.instagram.com/" role="button"
+              ><image
+                src="${pageContext.request.contextPath}/views/images/instagram.svg"
+                width="20"
+                height="20"
+            /></a>
           </div>
         </div>
       </div>

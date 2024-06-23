@@ -9,11 +9,7 @@ prefix="c" %>
     <title>Danh sách người dùng</title>
 
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
   </head>
@@ -57,13 +53,23 @@ prefix="c" %>
                 <td>${user.createdAt}</td>
                 <td style="display: flex; justify-content: space-around">
                   <a href="user?action=edit&userId=${user.userId}">
-                    <i class="bi bi-pencil-fill" style="color: yellow"></i>
+                    <image
+                      src="${pageContext.request.contextPath}/views/images/pencil-fill.svg"
+                      width="20"
+                      height="20"
+                      style="color: yellow"
+                    />
                   </a>
                   <a
                     href="user?action=delete&userId=${user.userId}"
                     onclick="return confirm('Bạn có chắc chắn muốn xóa user này?');"
                   >
-                    <i class="bi bi-trash3-fill" style="color: red"></i>
+                    <image
+                      src="${pageContext.request.contextPath}/views/images/trash3-fill.svg"
+                      width="20"
+                      height="20"
+                      style="color: red"
+                    />
                   </a>
                 </td>
               </tr>

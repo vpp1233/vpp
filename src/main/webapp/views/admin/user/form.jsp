@@ -8,9 +8,9 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
+    rel="stylesheet"
+  />
     <title>Form người dùng</title>
   </head>
   <body>

@@ -7,9 +7,13 @@ pageEncoding="UTF-8" %>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Header</title>
-    
+
     <link
       href="${pageContext.request.contextPath}/views/header/header.css"
+      rel="stylesheet"
+    />
+    <link
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
   </head>
@@ -90,12 +94,13 @@ pageEncoding="UTF-8" %>
               aria-expanded="false"
             >
               Tài khoản
-              <span
-                ><i
-                  class="bi bi-person-circle"
-                  style="font-size: 20px; margin-left: 10px"
-                ></i
-              ></span>
+              <span class="ml-1">
+                <image
+                  src="${pageContext.request.contextPath}/views/images/person-circle.svg"
+                  width="20"
+                  height="20"
+                />
+              </span>
             </a>
             <div class="dropdown-menu" aria-labelledby="accountDropdown">
               <a
@@ -113,11 +118,12 @@ pageEncoding="UTF-8" %>
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/cart"
               >Giỏ hàng
-              <span
-                ><i
-                  class="bi bi-cart-fill"
-                  style="font-size: 20px; margin-left: 10px"
-                ></i></span
+              <span class="ml-1">
+                <image
+                  src="${pageContext.request.contextPath}/views/images/cart-fill.svg"
+                  width="20"
+                  height="20"
+                /> </span
             ></a>
           </li>
         </ul>
@@ -128,7 +134,7 @@ pageEncoding="UTF-8" %>
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </html>

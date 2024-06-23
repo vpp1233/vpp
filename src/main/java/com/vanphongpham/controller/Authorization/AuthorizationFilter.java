@@ -45,7 +45,7 @@ public class AuthorizationFilter implements Filter {
 		// Cho phép truy cập đến / mà không cần đăng nhập
 		boolean webRequest = (requestURI.endsWith("/vanphongpham-1.0/") || requestURI.endsWith("/vanphongpham/"));
 		
-		boolean resourceRequest = requestURI.endsWith(".css") || requestURI.endsWith(".jsp") || requestURI.endsWith(".jpg");
+		boolean resourceRequest = requestURI.endsWith(".css") || requestURI.endsWith(".jsp") || requestURI.endsWith(".jpg") || requestURI.endsWith(".svg") || requestURI.endsWith(".js");
 		
 		if(!webRequest && !loginRequest && !resourceRequest)	{	
 			String path = requestURI.substring(httpRequest.getContextPath().length());

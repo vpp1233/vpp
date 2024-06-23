@@ -9,7 +9,7 @@ prefix="c" %>
     <title>Danh sách danh mục</title>
 
     <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
     <link
@@ -51,13 +51,23 @@ prefix="c" %>
                   <a
                     href="category?action=edit&categoryId=${category.categoryId}"
                   >
-                    <i class="bi bi-pencil-fill" style="color: yellow"></i>
+                    <image
+                      src="${pageContext.request.contextPath}/views/images/pencil-fill.svg"
+                      width="20"
+                      height="20"
+                      style="color: yellow"
+                    />
                   </a>
                   <a
                     href="category?action=delete&categoryId=${category.categoryId}"
                     onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');"
                   >
-                    <i class="bi bi-trash3-fill" style="color: red"></i>
+                    <image
+                      src="${pageContext.request.contextPath}/views/images/trash3-fill.svg"
+                      width="20"
+                      height="20"
+                      style="color: red"
+                    />
                   </a>
                 </td>
               </tr>

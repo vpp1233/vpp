@@ -6,7 +6,7 @@ prefix="c" %>
   <head>
     <meta charset="UTF-8" />
     <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
   
@@ -174,7 +174,8 @@ prefix="c" %>
     </div>
   </body>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/jquery-3.5.1.slim.min.js"></script>
+
   <script>
     $(document).ready(function () {
       // AJAX để lấy danh sách categories khi trang tải

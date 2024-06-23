@@ -9,11 +9,7 @@ pageEncoding="UTF-8" %>
     <title>Header</title>
     <!-- Bootstrap CSS -->
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
 
@@ -37,7 +33,7 @@ pageEncoding="UTF-8" %>
             href="${pageContext.request.contextPath}/admin/home"
           >
             <img
-              src="${pageContext.request.contextPath}/images/logo.jpg"
+              src="${pageContext.request.contextPath}/views/images/logo.jpg"
               alt="Logo"
             />
           </a>
@@ -103,12 +99,13 @@ pageEncoding="UTF-8" %>
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <span
-                  ><i
-                    class="bi bi-person-circle"
-                    style="font-size: 20px; margin-left: 10px"
-                  ></i
-                ></span>
+                <span class="ml-1">
+                  <image
+                    src="${pageContext.request.contextPath}/views/images/person-circle.svg"
+                    width="20"
+                    height="20"
+                  />
+                </span>
                 Xin chào, Admin
               </a>
               <div class="dropdown-menu" aria-labelledby="accountDropdown">
@@ -128,7 +125,7 @@ pageEncoding="UTF-8" %>
 
     <!-- Bootstrap JavaScript and dependencies -->
   </body>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/jquery-3.5.1.slim.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 </html>
