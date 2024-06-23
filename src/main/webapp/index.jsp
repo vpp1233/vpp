@@ -133,12 +133,20 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
               <div class="d-flex justify-content-between ml-5 mr-5">
                 <h4>${entry.key}</h4>
                 <div role="button" class="fs-4">
-                  <a href="#">Xem tất cả</a>
+                  <a
+                    href="${pageContext.request.contextPath}/categoryDetail?id=${entry.key}"
+                    >Xem tất cả</a
+                  >
                 </div>
               </div>
               <div class="d-flex justify-content-center">
                 <c:forEach var="product" items="${entry.value}">
-                  <div class="col-md-2 mb-4" role="button">
+                  <form
+                    class="col-md-2 mb-4"
+                    role="button"
+                    action="productDetail"
+                    method="post"
+                  >
                     <div
                       class="card rounded-2 product-card d-flex align-items-stretch"
                     >
@@ -193,7 +201,7 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                         >
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </c:forEach>
               </div>
             </div>
