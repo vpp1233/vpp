@@ -95,9 +95,11 @@ public class UserController extends HttpServlet {
         user.setStatus(Integer.parseInt(request.getParameter("status")));
         user.setType(Integer.parseInt(request.getParameter("type")));
         Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+        user.setCreatedAt(createdAt);
         String createdBy = session != null? String.valueOf(session.getAttribute("userId")) : null;
-        Timestamp updatedAt = null;
-        String updatedBy = null;
+        user.setCreateBy(createdBy);
+        user.setUpdateAt(null);
+        user.setUpdateBy(null);
 
         userService.addUser(user);
         response.sendRedirect("user?action=list");

@@ -12,6 +12,11 @@
 	<welcome-file-list>
 		<welcome-file>load.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	<!-- Đường dẫn để lưu file ảnh trên server -->
+	<context-param>
+        <param-name>uploadDirectory</param-name>
+        <param-value>C:\Users\Duc\Desktop\New folder (4)\vpp\src\main\webapp\views</param-value>
+    </context-param>
 
 </web-app>

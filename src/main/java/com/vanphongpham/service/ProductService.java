@@ -47,6 +47,30 @@ public class ProductService {
         return products;
     }
 	
+	public List<Product> getAllProductsByCategory(Integer categoryId) throws SQLException {
+		if (categoryId == null) {
+            return null;
+        }
+		// Tạo key cache dựa trên tên phương thức và tham số
+        String cacheKey = "getAllProductsByCategory" + categoryId;
+        
+        // Kiểm tra cache trước khi truy vấn cơ sở dữ liệu
+        CacheEntry cacheEntry = listCache.getIfPresent(cacheKey);
+        Timestamp latestTimestamp = productRepository.getLatestUpdatedAt();
+        if (cacheEntry != null && cacheEntry.getTimestamp().equals(latestTimestamp)) {
+            return cacheEntry.getAllProductsByCategory();
+        }
+        
+        // Nếu cache không có, truy vấn cơ sở dữ liệu
+        List<Product> products = productRepository.getAllProductsByCategory(categoryId);
+
+        if (products != null) {
+            listCache.put(cacheKey, new CacheEntry(products, latestTimestamp));
+        }
+
+        return products;
+    }
+	
 	private static class CacheEntry {
         private List<Product> products;
         private Timestamp timestamp;
@@ -59,7 +83,11 @@ public class ProductService {
         public List<Product> getLatestProductsByCategory() {
             return products;
         }
-
+        
+        public List<Product> getAllProductsByCategory() {
+            return products;
+        }
+        
         public Timestamp getTimestamp() {
             return timestamp;
         }

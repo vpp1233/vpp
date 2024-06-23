@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +8,6 @@ prefix="c" %>
       href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
-  
     <title>Form sản phẩm</title>
   </head>
   <body>
@@ -21,11 +19,13 @@ prefix="c" %>
         </c:choose>
       </h2>
       <form
+      	id="productForm"
         action="${pageContext.request.contextPath}/admin/product"
         method="post"
         onsubmit="return validateForm()"
         class="needs-validation"
         novalidate
+        enctype="multipart/form-data"
       >
         <c:if test="${not empty product.productId}">
           <input type="hidden" name="productId" value="${product.productId}" />
@@ -50,13 +50,7 @@ prefix="c" %>
 
         <div class="form-group">
           <label for="image">Ảnh:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="image"
-            name="image"
-            value="${product.image}"
-          />
+          <input type="file" id="image" name="image" accept="image/*"><br><br>
         </div>
 
         <div class="form-group">
@@ -112,7 +106,7 @@ prefix="c" %>
             <select class="form-control" id="status" name="status" required>
               <option value="">Chọn trạng thái</option>
               <option value="0" ${product.status == 0 ? 'selected' : ''}>Ẩn sản phẩm</option>
-              <option value="1" ${product.status == 1 ? 'selected' : ''}>Hiện sản phẩm </option>
+              <option value="1" ${product.status == 1 ? 'selected' : ''}>Hiện sản phẩm</option>
             </select>
             <div class="invalid-feedback">Vui lòng chọn trạng thái.</div>
           </div>
@@ -125,8 +119,6 @@ prefix="c" %>
             </select>
             <div class="invalid-feedback">Vui lòng chọn trạng thái yêu thích của sản phẩm.</div>
           </div>
-
-       
 
         <div class="form-group">
           <label for="categoryDropdown">Danh mục:</label>
@@ -159,8 +151,8 @@ prefix="c" %>
         <div class="form-row">
           <div class="col-6">
             <button type="submit" class="btn btn-primary btn-block">
-              Lưu sản phẩm
-            </button>
+                    Lưu sản phẩm
+                </button>
           </div>
           <div class="col-6">
             <a
@@ -174,71 +166,61 @@ prefix="c" %>
     </div>
   </body>
 
-  <script src="${pageContext.request.contextPath}/assets/js/jquery-3.5.1.slim.min.js"></script>
-
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
+    
     $(document).ready(function () {
-      // AJAX để lấy danh sách categories khi trang tải
-      $.ajax({
-        url: "${pageContext.request.contextPath}/admin/category",
-        type: "GET",
-        data: {
-          action: "ajax", // Thêm tham số action để nhận biết yêu cầu từ AJAX
-        },
-        success: function (response) {
-          $("#categoryDropdown").empty();
-          $("#categoryDropdown").append(
-            '<option value="">Chọn category</option>'
-          );
-          $.each(response, function (index, category) {
-            // Giả sử response là một mảng JSON của các category
-            $("#categoryDropdown").append(
-              '<option value="' +
-                category.categoryId +
-                '" data-name="' +
-                category.categoryName +
-                '">' +
-                category.categoryName +
-                "</option>"
-            );
-          });
+        // AJAX để lấy danh sách categories khi trang tải
+        $.ajax({
+            url: "${pageContext.request.contextPath}/admin/category",
+            type: "GET",
+            data: {
+                action: "ajax", // Thêm tham số action để nhận biết yêu cầu từ AJAX
+            },
+            success: function (response) {
+                $("#categoryDropdown").empty();
+                $("#categoryDropdown").append('<option value="">Chọn category</option>');
+                $.each(response, function (index, category) {
+                    // Giả sử response là một mảng JSON của các category
+                    $("#categoryDropdown").append(
+                    '<option value="' + category.categoryId + '" data-name="' + category.categoryName + '">' + category.categoryName + "</option>"
+                    );
+                });
 
-          // Gán giá trị categoryId và categoryName từ product nếu có
-          var selectedCategoryId = "${product.categoryId}";
-          if (selectedCategoryId) {
-            $("#categoryDropdown").val(selectedCategoryId);
+                // Gán giá trị categoryId và categoryName từ product nếu có
+                var selectedCategoryId = "${product.categoryId}";
+                if (selectedCategoryId) {
+                    $("#categoryDropdown").val(selectedCategoryId);
+                    $("#categoryId").val(selectedCategoryId);
+
+                    var selectedCategoryName = $("#categoryDropdown option:selected").data("name");
+                    $("#categoryName").val(selectedCategoryName);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error:", error);
+            },
+        });
+
+        // Khi người dùng chọn một category
+        $("#categoryDropdown").change(function () {
+            var selectedCategoryId = $(this).val();
+            var selectedCategoryName = $("#categoryDropdown option:selected").data("name");
             $("#categoryId").val(selectedCategoryId);
-
-            var selectedCategoryName = $(
-              "#categoryDropdown option:selected"
-            ).data("name");
             $("#categoryName").val(selectedCategoryName);
-          }
-        },
-        error: function (xhr, status, error) {
-          console.log("Error:", error);
-        },
-      });
-
-      // Khi người dùng chọn một category
-      $("#categoryDropdown").change(function () {
-        var selectedCategoryId = $(this).val();
-        var selectedCategoryName = $("#categoryDropdown option:selected").data(
-          "name"
-        );
-        $("#categoryId").val(selectedCategoryId);
-        $("#categoryName").val(selectedCategoryName);
-      });
+        });
     });
 
     function validateForm() {
-      var selectedCategoryId = $("#categoryDropdown").val();
-      if (!selectedCategoryId) {
-        alert("Vui lòng chọn một danh mục.");
-        $("#categoryDropdown").focus();
-        return false; // Ngăn không cho biểu mẫu được gửi
-      }
-      return true; // Cho phép gửi biểu mẫu nếu đã chọn danh mục
+        var selectedCategoryId = $("#categoryDropdown").val();
+        if (!selectedCategoryId) {
+            alert("Vui lòng chọn một danh mục.");
+            $("#categoryDropdown").focus();
+            return false; // Ngăn không cho biểu mẫu được gửi
+        }
+        return true; // Cho phép gửi biểu mẫu nếu đã chọn danh mục
     }
+    
+    
   </script>
 </html>

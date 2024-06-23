@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,74 +134,50 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
                 <h4>${entry.key}</h4>
                 <div role="button" class="fs-4">
                   <a
-                    href="${pageContext.request.contextPath}/categoryDetail?id=${entry.key}"
+                    href="${pageContext.request.contextPath}/web/product?categoryId=${entry.value.get(0).getCategoryId()}"
                     >Xem tất cả</a
                   >
                 </div>
               </div>
               <div class="d-flex justify-content-center">
                 <c:forEach var="product" items="${entry.value}">
-                  <form
+                  <div
                     class="col-md-2 mb-4"
-                    role="button"
-                    action="productDetail"
-                    method="post"
-                  >
+                    role="button">
                     <div
                       class="card rounded-2 product-card d-flex align-items-stretch"
                     >
-                      <c:choose>
-                        <c:when test="${entry.key == 'Bảng'}">
-                          <img
-                            src="${pageContext.request.contextPath}/views/images/bang.jpg"
-                            alt="Bảng"
-                            class="img-fluid"
-                          />
-                        </c:when>
-                        <c:when test="${entry.key == 'Balo'}">
-                          <img
-                            src="${pageContext.request.contextPath}/views/images/balo.jpg"
-                            alt="Balo"
-                            class="img-fluid"
-                          />
-                        </c:when>
-                        <c:when test="${entry.key == 'Sách'}">
-                          <img
-                            src="${pageContext.request.contextPath}/views/images/sach.jpg"
-                            alt="Sách"
-                            class="img-fluid"
-                          />
-                        </c:when>
-                        <c:when test="${entry.key == 'Bút'}">
-                          <img
-                            src="${pageContext.request.contextPath}/views/images/but.jpg"
-                            alt="Bút"
-                            class="img-fluid"
-                          />
-                        </c:when>
-                        <c:otherwise>
-                          <img
-                            src="${pageContext.request.contextPath}/views/images/logo.jpg"
-                            alt="Default"
-                            class="img-fluid"
-                          />
-                        </c:otherwise>
-                      </c:choose>
+                      <img src="${pageContext.request.contextPath}${product.image}" alt="Product Image" class="img-fluid">
                       <div
                         class="card-body d-flex flex-column align-items-stretch"
                       >
                         <h6 class="card-title">${product.productName}</h6>
                         <p class="card-text">${product.description}.</p>
                         <p class="card-text">Giá: ${product.price} VND</p>
-                        <a
-                          href="${pageContext.request.contextPath}/cart"
-                          class="btn btn-warning"
-                          style="width: -webkit-fill-available"
-                          >Thêm vào giỏ hàng</a
-                        >
+                        <c:choose>
+                        	<c:when test="${empty role}">
+                        		<button class="btn btn-warning btn-block" onclick="showLoginAlert()">Thêm vào giỏ hàng</button>
+                    		</c:when>
+                    		<c:otherwise>
+                            <form method="post" action="${pageContext.request.contextPath}/cart">
+	                            <input type="hidden" name="action" value="add">
+	                            <input type="hidden" name="productId" value="${product.productId}">
+	                            <div class="input-group mb-3">
+	                                <div class="input-group-prepend">
+	                                    <button type="button" class="btn btn-outline-secondary" onclick="decreaseQuantity(this)">-</button>
+	                                </div>
+	                                <input type="number" name="quantity" class="form-control" value="1" min="1" max="99">
+	                                <div class="input-group-append">
+	                                    <button type="button" class="btn btn-outline-secondary" onclick="increaseQuantity(this)">+</button>
+	                                </div>
+	                            </div>
+	                            <button type="submit" class="btn btn-warning btn-block">Thêm vào giỏ hàng</button>
+                        	</form>
+                        	</c:otherwise>
+                        </c:choose>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </c:forEach>
               </div>
             </div>
@@ -216,5 +192,26 @@ prefix="c" %> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script>
+    function showLoginAlert() {
+        alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
+    }
+    
+    function decreaseQuantity(button) {
+        var input = button.parentElement.nextElementSibling;
+        var currentValue = parseInt(input.value);
+        if (currentValue > 1) {
+            input.value = currentValue - 1;
+        }
+    }
+    
+    function increaseQuantity(button) {
+        var input = button.parentElement.previousElementSibling;
+        var currentValue = parseInt(input.value);
+        if (currentValue < 99) {
+            input.value = currentValue + 1;
+        }
+    }
+</script>
   </body>
 </html>

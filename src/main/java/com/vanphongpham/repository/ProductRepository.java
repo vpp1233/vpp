@@ -41,6 +41,34 @@ public class ProductRepository {
 	    return products;
 	}
 	
+	public List<Product> getAllProductsByCategory(Integer categoryId) throws SQLException {
+	    List<Product> products = new ArrayList<>();
+	    String sql = "SELECT * FROM tbl_sanpham WHERE category_id = ? ORDER BY created_at DESC";
+	    try (Connection connection = DatabaseConnection.getConnection();
+	        PreparedStatement statement = connection.prepareStatement(sql)){
+	    	
+	    	statement.setInt(1, categoryId);
+	    	ResultSet resultSet = statement.executeQuery();
+		        while (resultSet.next()) {
+		            Product product = new Product(null, null, null, null);
+		            product.setProductId(resultSet.getInt("product_id"));
+		            product.setProductName(resultSet.getString("product_name"));
+		            product.setImage(resultSet.getString("image"));
+		            product.setPrice(resultSet.getFloat("price"));
+		            product.setDescription(resultSet.getString("description"));
+		            product.setCategoryId(resultSet.getInt("category_id"));
+		            product.setCreatedAt(resultSet.getTimestamp("created_at"));
+		            product.setCreateBy(resultSet.getString("create_by"));
+		            product.setUpdateAt(resultSet.getTimestamp("update_at"));
+		            product.setUpdateBy(resultSet.getString("update_by"));
+		            products.add(product);
+		        }
+	    }catch (SQLException e) {
+			printSQLException(e);
+		}
+	    return products;
+	}
+	
 	public Timestamp getLatestUpdatedAt() {
 		Timestamp latestTimestamp = null;
         try (Connection connection = DatabaseConnection.getConnection()) {

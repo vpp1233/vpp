@@ -1,21 +1,26 @@
 package com.vanphongpham.controller.admin;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import com.vanphongpham.model.Product;
 import com.vanphongpham.service.admin.ProductService;
+import com.vanphongpham.util.ImageUpload;
 
 @WebServlet("/admin/product")
+@MultipartConfig
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private ProductService productService;
@@ -27,9 +32,6 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
         doGet(request, response);
     }
 
@@ -37,7 +39,6 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
         
         String action = request.getParameter("action");
         if (action == null) {
@@ -91,48 +92,123 @@ public class ProductController extends HttpServlet {
     }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-    	HttpSession session = request.getSession(false);
-    	Product product = new Product(null, null, null, null);
-    	
-    	product.setProductName(request.getParameter("productName"));
-    	product.setImage(request.getParameter("image"));
-        product.setPrice((request.getParameter("price") != null && !request.getParameter("price").isEmpty()) ? Float.parseFloat(request.getParameter("price")) : 0);
+            throws SQLException, IOException, ServletException {
+
+        HttpSession session = request.getSession(false);
+        Product product = new Product(null, null, null, null);
+
+        Part filePart = request.getPart("image");
+        String uploadPath = request.getServletContext().getInitParameter("uploadDirectory");
+        String imagePath = null;
+        
+        if (filePart != null) {
+            imagePath = ImageUpload.uploadImage(filePart, uploadPath);
+        }
+
+        product.setProductName(request.getParameter("productName"));
+        product.setImage(imagePath);
+
+        String priceStr = request.getParameter("price");
+        if (priceStr != null && !priceStr.isEmpty()) {
+            product.setPrice(Float.parseFloat(priceStr));
+        } else {
+            product.setPrice(0);
+        }
+
         product.setDescription(request.getParameter("description"));
-        product.setSalePrice((request.getParameter("salePrice") != null && !request.getParameter("salePrice").isEmpty()) ? Float.parseFloat(request.getParameter("salePrice")) : 0);
-        product.setStatus(Integer.parseInt(request.getParameter("status")));
-        product.setIsfavorite(Integer.parseInt(request.getParameter("isFavorite")));
-        product.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
+
+        String salePriceStr = request.getParameter("salePrice");
+        if (salePriceStr != null && !salePriceStr.isEmpty()) {
+            product.setSalePrice(Float.parseFloat(salePriceStr));
+        } else {
+            product.setSalePrice(0);
+        }
+
+        String quantitySoldStr = request.getParameter("quantitySold");
+        if (quantitySoldStr != null && !quantitySoldStr.isEmpty()) {
+            product.setQuantitySold(Integer.parseInt(quantitySoldStr));
+        }
+        
+        String statusStr = request.getParameter("status");
+        if (statusStr != null && !statusStr.isEmpty()) {
+            product.setStatus(Integer.parseInt(statusStr));
+        }
+
+        String isFavoriteStr = request.getParameter("isFavorite");
+        if (isFavoriteStr != null && !isFavoriteStr.isEmpty()) {
+            product.setIsfavorite(Integer.parseInt(isFavoriteStr));
+        }
+
+        String categoryIdStr = request.getParameter("categoryId");
+        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+            product.setCategoryId(Integer.parseInt(categoryIdStr));
+        }
+
         product.setCategoryName(request.getParameter("categoryName"));
         product.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        product.setCreateBy(session != null? String.valueOf(session.getAttribute("userId")) : null);
-        product.setUpdateAt(null);
-        product.setUpdateBy(null);
-        
+        product.setCreateBy(session != null ? String.valueOf(session.getAttribute("userId")) : null);
+
         productService.addProduct(product);
         response.sendRedirect("product?action=list");
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
+            throws SQLException, IOException, ServletException  {
     	HttpSession session = request.getSession(false);
     	Product product = new Product(null, null, null, null);
     	
+    	Part filePart = request.getPart("image");
+        String uploadPath = request.getServletContext().getInitParameter("uploadDirectory");
+        String imagePath = null;
+        
+        if (filePart != null) {
+            imagePath = ImageUpload.uploadImage(filePart, uploadPath);
+        }
+        
         product.setProductId(Integer.parseInt(request.getParameter("productId")));
         product.setProductName(request.getParameter("productName"));
-    	product.setImage(request.getParameter("image"));
-        product.setPrice(request.getParameter("price") != null? Float.parseFloat(request.getParameter("price")) : null);
+        product.setImage(imagePath);
+
+        String priceStr = request.getParameter("price");
+        if (priceStr != null && !priceStr.isEmpty()) {
+            product.setPrice(Float.parseFloat(priceStr));
+        } else {
+            product.setPrice(0);
+        }
+
         product.setDescription(request.getParameter("description"));
-        product.setSalePrice(request.getParameter("salePrice") != null? Float.parseFloat(request.getParameter("salePrice")) : null);
-        product.setQuantitySold(Integer.parseInt(request.getParameter("quantitySold")));
-        product.setStatus(Integer.parseInt(request.getParameter("status")));
-        product.setIsfavorite(Integer.parseInt(request.getParameter("isFavorite")));
-        product.setCategoryId(Integer.parseInt(request.getParameter("categoryId")));
+
+        String salePriceStr = request.getParameter("salePrice");
+        if (salePriceStr != null && !salePriceStr.isEmpty()) {
+            product.setSalePrice(Float.parseFloat(salePriceStr));
+        } else {
+            product.setSalePrice(0);
+        }
+
+        String quantitySoldStr = request.getParameter("quantitySold");
+        if (quantitySoldStr != null && !quantitySoldStr.isEmpty()) {
+            product.setQuantitySold(Integer.parseInt(quantitySoldStr));
+        }
+
+        String statusStr = request.getParameter("status");
+        if (statusStr != null && !statusStr.isEmpty()) {
+            product.setStatus(Integer.parseInt(statusStr));
+        }
+
+        String isFavoriteStr = request.getParameter("isFavorite");
+        if (isFavoriteStr != null && !isFavoriteStr.isEmpty()) {
+            product.setIsfavorite(Integer.parseInt(isFavoriteStr));
+        }
+
+        String categoryIdStr = request.getParameter("categoryId");
+        if (categoryIdStr != null && !categoryIdStr.isEmpty()) {
+            product.setCategoryId(Integer.parseInt(categoryIdStr));
+        }
+
         product.setCategoryName(request.getParameter("categoryName"));
-        product.setProductName(request.getParameter("categoryName"));
         product.setUpdateAt(new Timestamp(System.currentTimeMillis()));
-        product.setUpdateBy(session != null? String.valueOf(session.getAttribute("userId")) : null);
-        
+        product.setUpdateBy(session != null ? String.valueOf(session.getAttribute("userId")) : null);
+
         productService.updateProduct(product);
         response.sendRedirect("product?action=list");
     }
