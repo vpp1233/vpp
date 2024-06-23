@@ -28,7 +28,7 @@ pageEncoding="UTF-8" %>
       <div class="row custom-row">
         <div class="col-md-4">
           <img
-            src="${pageContext.request.contextPath}/images/logo.jpg"
+            src="${pageContext.request.contextPath}/views/images/logo.jpg"
             alt="Logo"
           />
         </div>
