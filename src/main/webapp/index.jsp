@@ -14,54 +14,7 @@
       .product-card {
         min-height: 490px; /* Đặt chiều cao tối thiểu cho sản phẩm */
       }
-      .custom-control {
-        background-color: rgba(255, 255, 255, 0.6); /* Màu nền trắng nhạt */
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .custom-control:hover {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.9
-        ); /* Màu nền trắng đậm khi hover */
-      }
-
-      .custom-icon {
-        background-image: none;
-        border: 1px solid black;
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        background-color: black;
-      }
-
-      .custom-control-prev .custom-icon:after {
-        content: "";
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(135deg);
-        margin-left: 3px;
-      }
-
-      .custom-control-next .custom-icon:after {
-        content: "";
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(-45deg);
-        margin-right: 3px;
-      }
+    
     </style>
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -162,11 +115,11 @@
                             <form method="post" action="${pageContext.request.contextPath}/cart">
 	                            <input type="hidden" name="action" value="add">
 	                            <input type="hidden" name="productId" value="${product.productId}">
-	                            <div class="input-group mb-3">
+	                            <div class="input-group mb-3 justify-content-center">
 	                                <div class="input-group-prepend">
 	                                    <button type="button" class="btn btn-outline-secondary" onclick="decreaseQuantity(this)">-</button>
 	                                </div>
-	                                <input type="number" name="quantity" class="form-control" value="1" min="1" max="99">
+	                                <input type="number" name="quantity" class="text-center" value="1" min="1" max="99">
 	                                <div class="input-group-append">
 	                                    <button type="button" class="btn btn-outline-secondary" onclick="increaseQuantity(this)">+</button>
 	                                </div>
