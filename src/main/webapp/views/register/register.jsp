@@ -40,7 +40,7 @@ session.removeAttribute("error"); } %>
     <div class="body-login">
       <div class="login-container">
         <h2 class="text-center">Đăng ký</h2>
-        <form action="login" method="post">
+        <form action="register" method="post">
           <input
             type="hidden"
             name="action"
