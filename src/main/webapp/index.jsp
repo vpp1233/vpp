@@ -84,6 +84,7 @@
           <c:forEach var="entry" items="${categoryProducts}">
             <div class="row d-flex flex-column">
               <div class="d-flex justify-content-between ml-5 mr-5">
+              	<c:if test="${not empty entry.value}">
                 <h4>${entry.key}</h4>
                 <div role="button" class="fs-4">
                   <a
@@ -91,6 +92,7 @@
                     >Xem tất cả</a
                   >
                 </div>
+                </c:if>
               </div>
               <div class="d-flex justify-content-center">
                 <c:forEach var="product" items="${entry.value}">

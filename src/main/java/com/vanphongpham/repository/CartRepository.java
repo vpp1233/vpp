@@ -89,6 +89,16 @@ public class CartRepository {
         return rowUpdated;
     }
     
+    public void clearCartByUser(int userId) throws SQLException {
+        // Thực hiện xóa tất cả sản phẩm trong giỏ hàng của người dùng
+        String sql = "DELETE FROM tbl_giohang WHERE user_id = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            statement.executeUpdate();
+        }
+    }
+    
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

@@ -23,6 +23,30 @@ public class ProductService {
                 .build();
     }
 	
+	public List<Product> getFavoriteProduct(Integer categoryId, Integer limit) throws SQLException {
+		if (categoryId == null || limit == null) {
+            return null;
+        }
+		// Tạo key cache dựa trên tên phương thức và tham số
+        String cacheKey = "getFavoriteProduct" + categoryId + "_" + limit;
+        
+        // Kiểm tra cache trước khi truy vấn cơ sở dữ liệu
+        CacheEntry cacheEntry = listCache.getIfPresent(cacheKey);
+        Timestamp latestTimestamp = productRepository.getLatestUpdatedAt();
+        if (cacheEntry != null && cacheEntry.getTimestamp().equals(latestTimestamp)) {
+            return cacheEntry.getLatestProductsByCategory();
+        }
+        
+        // Nếu cache không có, truy vấn cơ sở dữ liệu
+        List<Product> products = productRepository.getFavoriteProduct(categoryId, limit);
+
+        if (products != null) {
+            listCache.put(cacheKey, new CacheEntry(products, latestTimestamp));
+        }
+
+        return products;
+    }
+	
 	public List<Product> getLatestProductsByCategory(Integer categoryId, Integer limit) throws SQLException {
 		if (categoryId == null || limit == null) {
             return null;
@@ -81,6 +105,10 @@ public class ProductService {
         }
 
         public List<Product> getLatestProductsByCategory() {
+            return products;
+        }
+        
+        public List<Product> getFavoriteProduct() {
             return products;
         }
         

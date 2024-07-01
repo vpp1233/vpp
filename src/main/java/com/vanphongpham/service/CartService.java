@@ -35,7 +35,16 @@ public class CartService {
 
         return cartItems;
     }
-
+    
+    public void clearCartByUser(int userId) {
+    	try {
+			cartRepository.clearCartByUser(userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     public boolean removeFromCart(int cartId) throws SQLException {
         // Remove item from the cart repository
         boolean removed = cartRepository.removeFromCart(cartId);

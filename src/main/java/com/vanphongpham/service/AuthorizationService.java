@@ -12,6 +12,8 @@ public class AuthorizationService {
         		|| path.startsWith("/forgot")
         		|| path.startsWith("/cart")
         		|| path.startsWith("/logout")
+        		|| path.startsWith("/succes")
+        		|| path.startsWith("/favorites")
         		)) {
             return true;
         }

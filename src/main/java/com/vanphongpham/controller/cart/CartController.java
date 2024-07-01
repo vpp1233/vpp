@@ -45,6 +45,9 @@ public class CartController extends HttpServlet {
 	            case "delete":
 	                deleteCartItem(request, response);
 	                break;
+	            case "order":
+	            	orderCart(request, response);
+	                break;
 	            default:
 	            	getCartByUser(request, response);
 	                break;
@@ -98,5 +101,18 @@ public class CartController extends HttpServlet {
     		}
     	}
         request.getRequestDispatcher("/views/cart/cart.jsp").forward(request, response);
+    }
+    
+    private void orderCart(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("userId") != null) {
+            Integer userIdObj = (Integer) session.getAttribute("userId");
+            if (userIdObj != null) {
+                int userId = userIdObj.intValue();
+                cartService.clearCartByUser(userId);
+            }
+        }
+        request.getRequestDispatcher("/views/succes/succes.jsp").forward(request, response);
     }
 }
