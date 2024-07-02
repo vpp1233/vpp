@@ -166,7 +166,10 @@
     </div>
   </body>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	
+  <script src="${pageContext.request.contextPath}/assets/js/jquery-3.6.0.slim.min.js"></script>
+
+  
   <script>
     
     $(document).ready(function () {

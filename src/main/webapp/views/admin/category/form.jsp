@@ -56,4 +56,5 @@
         </form>
     </div>
 </body>
+<script src="${pageContext.request.contextPath}/assets/js/jquery-3.6.0.slim.min.js"></script>
 </html>

@@ -12,10 +12,6 @@ prefix="c" %>
       href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <%@ include file="../header/header.jsp" %>
