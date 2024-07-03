@@ -53,17 +53,8 @@ public class CategoryService {
 
     public List<Category> getAllCategories() {
     	List<Category> categories = null;
-    	String cacheKey = "getAllCategories";
-    	
-    	CacheEntry cacheEntry = listCache.getIfPresent(cacheKey);
-    	Timestamp latestTimestamp = categoryRepository.getLatestUpdatedAt();
-    	if (cacheEntry != null && cacheEntry.getTimestamp().equals(latestTimestamp)) {
-            return cacheEntry.getAllCategories();
-        }
     	categories = categoryRepository.selectAllCategories();
-    	if (categories != null) {
-    		listCache.put(cacheKey, new CacheEntry(categories, latestTimestamp));
-        }
+    
         return categories;
     }
 

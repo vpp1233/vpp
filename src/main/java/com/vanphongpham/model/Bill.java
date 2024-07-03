@@ -3,32 +3,38 @@ package com.vanphongpham.model;
 import java.sql.Timestamp;
 
 public class Bill extends BaseModel<Bill> {
-    private int billId;
-    private int customerId;
-    private short status;
+    private Integer billId;
+    private Integer productId;
+    private Integer userId;
     private float totalPrice;
+    private String productName;
 
     // Constructor
-    public Bill(int billId, int customerId,
-            short status, float totalPrice, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
+    public Bill(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
+    	super(createdAt, updateAt, createBy, updateBy);
+    }
+    
+    public Bill(Integer billId, Integer productId,
+    		Integer userId, float totalPrice, String productName, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.billId = billId;
-        this.customerId = customerId;
-        this.status = status;
+        this.productId = productId;
+        this.userId = userId;
         this.totalPrice = totalPrice;
+        this.productName = productName;
     }
 
     // Setter
-    public void setBillId(int billId) {
+    public void setBillId(Integer billId) {
         this.billId = billId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
-    public void setStatus(short status) {
-        this.status = status;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setTotalPrice(float totalPrice) {
@@ -36,19 +42,28 @@ public class Bill extends BaseModel<Bill> {
     }
 
     // Getter
-    public int getBillId() {
+    public Integer getBillId() {
         return billId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public short getStatus() {
-        return status;
+    public Integer getUserId() {
+        return userId;
     }
 
     public float getTotalPrice() {
         return totalPrice;
     }
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+    
 }

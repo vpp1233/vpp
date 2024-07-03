@@ -40,7 +40,7 @@
                         </li>
                     </c:if>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/favorites">Sản phẩm ưa thích</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/favorites?action=list">Sản phẩm ưa thích</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +58,6 @@
                             <span><i class="bi bi-person-circle" style="font-size: 20px; margin-left: 10px"></i></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="accountDropdown">
-                            <a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Hồ sơ</a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
                         </div>
                     </li>

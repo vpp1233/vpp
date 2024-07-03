@@ -20,23 +20,23 @@
       </head>
 
       <body>
-        <%@ include file="./views/header/header.jsp" %>
+        <%@ include file="../header/header.jsp" %>
 
           <div class="mt-5 pl-5 pr-5">
 
             <c:choose>
-              <c:when test="${not empty categoryProducts}">
-                <c:forEach var="entry" items="${categoryProducts}">
+              <c:when test="${not empty favoriteProducts}">
+                <c:forEach var="entry" items="${favoriteProducts}">
                   <div class="row d-flex flex-column">
                     <div class="d-flex justify-content-between ml-5 mr-5">
                       <c:if test="${not empty entry.value}">
                         <h4>${entry.key}</h4>
-                        <!-- <div role="button" class="fs-4">
+                        <div role="button" class="fs-4">
                   <a
-                    href="${pageContext.request.contextPath}/web/product?categoryId=${entry.value.get(0).getCategoryId()}"
+                    href="${pageContext.request.contextPath}/favorites?action=listAll&categoryId=${entry.value.get(0).getCategoryId()}"
                     >Xem tất cả</a
                   >
-                </div> -->
+                </div>
                       </c:if>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -87,7 +87,7 @@
               </c:otherwise>
             </c:choose>
           </div>
-          <%@ include file="./views/footer/footer.jsp" %>
+          <%@ include file="../footer/footer.jsp" %>
 
           <script src="${pageContext.request.contextPath}/assets/js/jquery-3.6.0.slim.min.js"></script>
           <script src="${pageContext.request.contextPath}/assets/js/popper.min.js"></script>
