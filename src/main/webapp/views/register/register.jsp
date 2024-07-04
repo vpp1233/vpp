@@ -24,10 +24,6 @@ session.removeAttribute("error"); } %>
       href="${pageContext.request.contextPath}/assets/css/bootstrap452.min.css"
       rel="stylesheet"
     />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-    />
 
     <link
       href="${pageContext.request.contextPath}/views/register/register.css"
@@ -69,7 +65,12 @@ session.removeAttribute("error"); } %>
               />
               <div class="input-group-append">
                 <span class="input-group-text bg-white" id="togglePassword">
-                  <i class="bi bi-eye-slash"></i>
+                  <img
+                    src="${pageContext.request.contextPath}/views/images/bi-bi-eye-slash.svg"
+                    width="20"
+                    height="20"
+                    id="toggleIcon"
+                  />
                 </span>
               </div>
             </div>
@@ -93,7 +94,12 @@ session.removeAttribute("error"); } %>
                   class="input-group-text bg-white"
                   id="togglePasswordRetype"
                 >
-                  <i class="bi bi-eye-slash"></i>
+                  <img
+                    src="${pageContext.request.contextPath}/views/images/bi-bi-eye-slash.svg"
+                    width="20"
+                    height="20"
+                    id="toggleIconRetype"
+                  />
                 </span>
               </div>
             </div>
@@ -117,6 +123,13 @@ session.removeAttribute("error"); } %>
     <script>
       const togglePassword = document.querySelector("#togglePassword");
       const password = document.querySelector("#password");
+      const toggleIcon = document.querySelector("#toggleIcon");
+      const toggleIconRetype = document.querySelector("#toggleIconRetype");
+
+      const eyeSlashIcon =
+        "${pageContext.request.contextPath}/views/images/bi-bi-eye-slash.svg";
+      const eyeIcon =
+        "${pageContext.request.contextPath}/views/images/bi-bi-eye.svg";
 
       togglePassword.addEventListener("click", function () {
         // toggle the type attribute
@@ -124,8 +137,11 @@ session.removeAttribute("error"); } %>
           password.getAttribute("type") === "password" ? "text" : "password";
         password.setAttribute("type", type);
         // toggle the eye slash icon
-        this.querySelector("i").classList.toggle("bi-eye");
-        this.querySelector("i").classList.toggle("bi-eye-slash");
+        if (password.getAttribute("type") === "password") {
+          toggleIcon.src = eyeSlashIcon;
+        } else {
+          toggleIcon.src = eyeIcon;
+        }
       });
 
       const togglePasswordRetype = document.querySelector(
@@ -141,8 +157,11 @@ session.removeAttribute("error"); } %>
             : "password";
         passwordRetype.setAttribute("type", type);
         // toggle the eye slash icon
-        this.querySelector("i").classList.toggle("bi-eye");
-        this.querySelector("i").classList.toggle("bi-eye-slash");
+        if (passwordRetype.getAttribute("type") === "password") {
+          toggleIconRetype.src = eyeSlashIcon;
+        } else {
+          toggleIconRetype.src = eyeIcon;
+        }
       });
     </script>
 
