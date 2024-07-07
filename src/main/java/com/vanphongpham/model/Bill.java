@@ -1,26 +1,27 @@
 package com.vanphongpham.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Bill extends BaseModel<Bill> {
     private Integer billId;
-    private Integer productId;
+    private String productIds;
     private Integer userId;
-    private float totalPrice;
-    private String productName;
+    private float billPrice;
+    private List<String> productName;
 
     // Constructor
     public Bill(Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
     	super(createdAt, updateAt, createBy, updateBy);
     }
     
-    public Bill(Integer billId, Integer productId,
-    		Integer userId, float totalPrice, String productName, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
+    public Bill(Integer billId, String productIds,
+    		Integer userId, float billPrice, List<String> productName, Timestamp createdAt, Timestamp updateAt, String createBy, String updateBy) {
         super(createdAt, updateAt, createBy, updateBy);
         this.billId = billId;
-        this.productId = productId;
+        this.productIds = productIds;
         this.userId = userId;
-        this.totalPrice = totalPrice;
+        this.billPrice = billPrice;
         this.productName = productName;
     }
 
@@ -29,16 +30,16 @@ public class Bill extends BaseModel<Bill> {
         this.billId = billId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProductIds(String productIds) {
+        this.productIds = productIds;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setbillPrice(float billPrice) {
+        this.billPrice = billPrice;
     }
 
     // Getter
@@ -46,23 +47,23 @@ public class Bill extends BaseModel<Bill> {
         return billId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public String getProductIds() {
+        return productIds;
     }
 
     public Integer getUserId() {
         return userId;
     }
 
-    public float getTotalPrice() {
-        return totalPrice;
+    public float getbillPrice() {
+        return billPrice;
     }
 
-	public String getProductName() {
+	public List<String> getProductName() {
 		return productName;
 	}
 
-	public void setProductName(String productName) {
+	public void setProductName(List<String> productName) {
 		this.productName = productName;
 	}
     

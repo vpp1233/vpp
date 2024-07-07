@@ -43,10 +43,14 @@
 		    </c:forEach>
 		</div>
 
-        <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
-            <h4 id="totalPrice">Tổng tiền: 0</h4>
-            <a href="${pageContext.request.contextPath}/cart?action=order" class="btn btn-primary">Đặt hàng</a>
-        </div>
+        <form action="${pageContext.request.contextPath}/cart?action=order" method="post">
+            <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+                <h4 id="totalPrice">Tổng tiền: 0</h4>
+                <input type="hidden" id="hiddenTotalPrice" name="totalPrice" value="0">
+                <input type="hidden" name="productIds" value="${productIds}">
+                <button type="submit" class="btn btn-primary">Đặt hàng</button>
+            </div>
+        </form>
 
         <c:if test="${empty cartByUsers}">
             <div>Hiện chưa có sản phẩm nào trong giỏ hàng của bạn.</div>
@@ -70,6 +74,7 @@
 	        });
 	
 	        document.getElementById('totalPrice').innerText = 'Tổng tiền: ' + totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+	        document.getElementById('hiddenTotalPrice').value = totalPrice;
 	    }
 		
 	 // Định dạng giá tiền

@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.vanphongpham.model.Product;
 import com.vanphongpham.util.DatabaseConnection;
@@ -18,7 +20,8 @@ public class ProductRepository {
     private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM tbl_sanpham;";
     private static final String DELETE_PRODUCT_SQL = "DELETE FROM tbl_sanpham WHERE product_id = ?;";
     private static final String UPDATE_PRODUCT_SQL = "UPDATE tbl_sanpham SET product_name = ?, image = ?, price = ?, description = ?, sale_price = ?, quantity_sold = ?, status = ?, isfavorite = ?, category_id = ?, category_name = ?, update_at = ?, update_by = ? WHERE product_id = ?;";
-
+    private static final String SELECT_PRODUCT_NAMES_SQL = "SELECT product_id, product_name FROM tbl_sanpham WHERE product_id IN ";
+    
     public void insertProduct(Product product) throws SQLException {
         try (
         	Connection connection = DatabaseConnection.getConnection();
@@ -138,7 +141,45 @@ public class ProductRepository {
         }
         return rowUpdated;
     }
+    
+    public List<String> getProductNamesFromIds(String productIdsStr) throws SQLException {
+        List<String> productNames = new ArrayList<>();
+        Set<Integer> productIdSet = new HashSet<>();
+        
+        // Chia chuỗi productIdsStr thành mảng các productId
+        String[] productIdStrings = productIdsStr.split(",");
+        for (String productIdStr : productIdStrings) {
+            productIdSet.add(Integer.parseInt(productIdStr.trim()));
+        }
 
+        // Tạo danh sách các productId không trùng lặp
+        List<Integer> distinctProductIds = new ArrayList<>(productIdSet);
+
+        // Tạo câu truy vấn SQL
+        StringBuilder sqlBuilder = new StringBuilder(SELECT_PRODUCT_NAMES_SQL);
+        sqlBuilder.append("(");
+        for (int i = 0; i < distinctProductIds.size(); i++) {
+            sqlBuilder.append("?");
+            if (i < distinctProductIds.size() - 1) {
+                sqlBuilder.append(",");
+            }
+        }
+        sqlBuilder.append(")");
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlBuilder.toString())) {
+            for (int i = 0; i < distinctProductIds.size(); i++) {
+                preparedStatement.setInt(i + 1, distinctProductIds.get(i));
+            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String productName = resultSet.getString("product_name");
+                productNames.add(productName);
+            }
+        }
+        return productNames;
+    }
+    
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

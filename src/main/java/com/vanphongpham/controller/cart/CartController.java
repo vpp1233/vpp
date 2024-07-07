@@ -2,7 +2,9 @@ package com.vanphongpham.controller.cart;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.vanphongpham.model.Bill;
 import com.vanphongpham.model.Cart;
+import com.vanphongpham.service.admin.BillService;
 import com.vanphongpham.service.CartService;
 
 //@WebServlet(name = "CartController", urlPatterns = { "/cart" })
@@ -20,9 +24,11 @@ public class CartController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
     private CartService cartService;
+    private BillService billService;
 
     public void init() {
         cartService = new CartService();
+        billService = new BillService();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -110,6 +116,18 @@ public class CartController extends HttpServlet {
             Integer userIdObj = (Integer) session.getAttribute("userId");
             if (userIdObj != null) {
                 int userId = userIdObj.intValue();
+                List<Cart> listCart = cartService.getCartsByUser(userId);
+                String productIdsStr = listCart.stream()
+                        .map(cart -> String.valueOf(cart.getProductId()))
+                        .collect(Collectors.joining(","));
+                float totalPrice = Float.parseFloat(request.getParameter("totalPrice"));
+                Bill bill = new Bill(null, null, null, null);
+                bill.setProductIds(productIdsStr);
+                bill.setbillPrice(totalPrice);
+                bill.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+                bill.setCreateBy(session.getAttribute("userId").toString());
+                bill.setUserId(userIdObj);
+                billService.addToBill(bill);
                 cartService.clearCartByUser(userId);
             }
         }

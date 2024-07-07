@@ -64,8 +64,8 @@ pageEncoding="UTF-8" %>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="${pageContext.request.contextPath}/admin/report"
-                  >Báo cáo doanh thu</a
+                  href="${pageContext.request.contextPath}/admin/bill"
+                  >Quản lý hóa đơn</a
                 >
               </li>
             </ul>

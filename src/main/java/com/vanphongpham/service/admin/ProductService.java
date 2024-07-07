@@ -33,4 +33,18 @@ public class ProductService {
     public boolean deleteProduct(Integer id) throws SQLException {
         return productRepository.deleteProduct(id);
     }
+    
+    public List<String> getProductNamesFromIds(String productIdsStr){
+    	if(productIdsStr == null) {
+    		return null;
+    	}
+    	List<String> productNames = null;
+    	try {
+    		productNames = productRepository.getProductNamesFromIds(productIdsStr);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return productNames;
+    }
 }
